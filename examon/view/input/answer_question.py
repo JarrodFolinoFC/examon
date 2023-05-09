@@ -1,18 +1,16 @@
+from simple_term_menu import TerminalMenu
+
 class AnswerInputter:
     def __init__(
             self,
-            message="Enter Choice: ",
-            invalid_message="Invalid choice, try again:"):
+            message="Enter Choice: "):
         self.__message = message
-        self.__invalid_message = invalid_message
 
     def prompt(self, question):
-        valid_choices = question.choices.keys()
-        value = input(self.__message)
-        while value not in valid_choices:
-            value = input(self.__invalid_message)
-
-        return value
+        choices = list(map(str, question.choices))
+        terminal_menu = TerminalMenu(choices)
+        menu_entry_index = terminal_menu.show()
+        return question.choices[menu_entry_index]
 
 class FreeTextAnswerInputter:
     def prompt(self, _question):

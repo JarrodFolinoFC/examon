@@ -4,6 +4,8 @@ from view.input.quiz_arg_parse import QuizArgParse
 from view.output.display_stats import display_stats
 from lib.quiz_engine_factory import build_quiz_engine
 
+DEFAULT_MODULE = 'examon_repo_1'
+DEFAULT_FROM_LIST = '*'
 
 class CliRuntime:
     @staticmethod

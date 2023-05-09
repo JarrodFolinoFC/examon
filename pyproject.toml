@@ -14,7 +14,8 @@ secondary = true
 python = "^3.9"
 pygments = "^2.13.0"
 inquirer = "^3.1.1"
-examon-core = "0.5.4"
+simple-term-menu = "^1.6.1"
+examon-core = "0.5.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "7.2.1"

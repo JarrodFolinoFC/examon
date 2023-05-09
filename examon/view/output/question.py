@@ -17,10 +17,6 @@ class BaseQuestionOutputter():
                 PythonLexer(),
                 self.formatter_class()))
 
-    def present_options(self, question):
-        for key, choice in question.choices.items():
-            print(f'{key}:\t{choice}')
-
 
 class InputParameterQuestionOutputter(BaseQuestionOutputter):
     def present_question(self, question):
@@ -28,10 +24,10 @@ class InputParameterQuestionOutputter(BaseQuestionOutputter):
         print('')
         super().present_question(question)
         print('')
-
-    def present_options(self, question):
-        print(f'Which value does the first paremeter need to be to return: {question.return_value}')
-        super().present_options(question)
+        print('What does the parmeter need to be for the last print statement to return:')
+        print(question.return_value)
+        print('')
+        print('')
 
 
 class ExpectedResultQuestionOutputter(BaseQuestionOutputter):
@@ -41,13 +37,12 @@ class ExpectedResultQuestionOutputter(BaseQuestionOutputter):
         print('')
         super().present_question(question)
         print('')
-        print('Print logs:')
-        for log in question.print_logs:
-            print(log[0])
+        if len(question.print_logs) > 1:
+            print('Print logs (last print omitted):')
+            for log in question.print_logs[:-1]:
+                print(log[0])
+            print('')
 
-    def present_options(self, question):
-        print('Select an option')
-        super().present_options(question)
 
 class FreeTextQuestionOutputter(BaseQuestionOutputter):
     def present_question(self, question):
@@ -56,6 +51,3 @@ class FreeTextQuestionOutputter(BaseQuestionOutputter):
         super().present_question(question)
         print('')
         print('What will this return?')
-
-    def present_options(self, question):
-        pass
