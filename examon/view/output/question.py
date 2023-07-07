@@ -17,6 +17,13 @@ class BaseQuestionOutputter():
                 PythonLexer(),
                 self.formatter_class()))
 
+    def display_print_logs(self, question):
+        if len(question.print_logs) > 1:
+            print('Print logs:')
+            for log in question.print_logs:
+                print(f' - {log[0]}')
+            print('')
+
 
 class InputParameterQuestionOutputter(BaseQuestionOutputter):
     def present_question(self, question):
@@ -24,24 +31,22 @@ class InputParameterQuestionOutputter(BaseQuestionOutputter):
         print('')
         super().present_question(question)
         print('')
-        print('What does the parmeter need to be for the last print statement to return:')
+        print('What does the parameter need to be for the last print statement to return:')
         print(question.return_value)
         print('')
         print('')
+        self.display_print_logs(question)
 
 
 class ExpectedResultQuestionOutputter(BaseQuestionOutputter):
     def present_question(self, question):
         print('')
+        print(question.metrics)
         print('What is the result of the last print statement?')
         print('')
         super().present_question(question)
         print('')
-        if len(question.print_logs) > 1:
-            print('Print logs (last print omitted):')
-            for log in question.print_logs[:-1]:
-                print(log[0])
-            print('')
+        self.display_print_logs(question)
 
 
 class FreeTextQuestionOutputter(BaseQuestionOutputter):
@@ -51,3 +56,6 @@ class FreeTextQuestionOutputter(BaseQuestionOutputter):
         super().present_question(question)
         print('')
         print('What will this return?')
+        print('')
+        self.display_print_logs(question)
+

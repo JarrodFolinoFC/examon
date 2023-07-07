@@ -1,5 +1,5 @@
-from examon_core.quiz_item_registry import QuizItemRegistry
 from examon_core.question import *
+from examon_core.examon_item_registry import *
 
 from view.input.answer_question import AnswerInputter, FreeTextAnswerInputter
 from view.output.question import *
@@ -7,7 +7,7 @@ from .calc_stats import calc_stats
 from .quiz_engine import QuizEngine
 
 def build_quiz_engine(tag, formatter_class):
-    registry = QuizItemRegistry.registry(tag)
+    registry = ExamonItemRegistry.registry(tag)
     view_mappings = {
         ExpectedResultQuestion.__name__: {
             'outputter': ExpectedResultQuestionOutputter(formatter_class),

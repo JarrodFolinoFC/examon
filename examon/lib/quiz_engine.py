@@ -42,9 +42,7 @@ class QuizEngine:
         correct, no = self.summary()
         print(f'You scored:\t{correct} / {no}')
         self.__streak.reset()
-        best, streaks = self.__streak.summary()
-        print(f'Best Streak:\t{best}')
-        print(f'Streaks:\t{", ".join(list(map(str, streaks)))}')
+        print(f'Best Streak:\t{self.__streak.summary()}')
 
     def summary(self):
         return self.correct_answers, len(self.questions)

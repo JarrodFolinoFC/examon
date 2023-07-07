@@ -7,7 +7,7 @@ class AnswerInputter:
         self.__message = message
 
     def prompt(self, question):
-        choices = list(map(str, question.choices))
+        choices = [x for x in list(map(str, question.choices)) if x]
         terminal_menu = TerminalMenu(choices)
         menu_entry_index = terminal_menu.show()
         return question.choices[menu_entry_index]
