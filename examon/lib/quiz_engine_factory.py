@@ -6,7 +6,8 @@ from examon.view.output.question import *
 from .calc_stats import calc_stats
 from .quiz_engine import QuizEngine
 
-def build_quiz_engine(tag, formatter_class, auto_answer = None):
+
+def build_quiz_engine(tag, formatter_class, auto_answer=None):
     registry = ExamonItemRegistry.registry(tag)
     view_mappings = {
         ExpectedResultQuestion.__name__: {

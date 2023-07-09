@@ -1,4 +1,4 @@
-from view.cli_runtime import CliRuntime
+from view.cli.main import CommandLineInterface
 
 if __name__ == "__main__":
-    CliRuntime.run()
+    CommandLineInterface.process_command()

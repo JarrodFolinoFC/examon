@@ -1,4 +1,7 @@
-class QuizArgParse:
+import argparse
+from examon.view.formatter_options import FormatterOptions
+
+class ExamonArgParse:
     def __init__(self, parser, formatter_options):
         self.__parser = parser
         self.__formatter_options = formatter_options
@@ -29,3 +32,10 @@ class QuizArgParse:
         subparsers.add_parser('overview',
                               help='Tag Information',
                               aliases=['tags'])
+
+class ExamonArgParseFactory:
+    @staticmethod
+    def build():
+        parser = argparse.ArgumentParser(prog='Examon CLI')
+        cli_args = ExamonArgParse(parser, FormatterOptions()).parse()
+        return (parser, cli_args)
