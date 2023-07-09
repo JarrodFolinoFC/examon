@@ -12,9 +12,11 @@ class QuizArgParse:
         repo_subparser = subparsers.add_parser('repo',
                                                help='Manage question repositories',
                                                aliases=['repos', 'repository', 'repositories'])
-        repo_subparser.add_argument('sub_command', help='[add|remove|list|init]')
+        repo_subparser.add_argument('sub_command', help='[add|remove|list|init|help]')
         repo_subparser.add_argument('--name', help='pip repository module name')
         repo_subparser.add_argument('--pip-url', help='pip repository module name')
+
+        subparsers.add_parser('help', help='Print this message')
 
         run_subparser = subparsers.add_parser('run', help='Run the quiz')
         run_subparser.add_argument("--formatter", help='')
