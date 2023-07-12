@@ -11,12 +11,12 @@ class RepoManagerCli:
         if cli_args.sub_command == 'add':
             manager.add(cli_args.name, cli_args.pip_url)
             manager.persist()
-        elif cli_args.sub_command == 'install':
-            manager.install()
         elif cli_args.sub_command == 'remove':
             manager.remove(cli_args.name)
             manager.remove_active(cli_args.name)
             manager.persist()
+        elif cli_args.sub_command == 'install':
+            manager.install()
         elif cli_args.sub_command == 'list':
             print('All:')
             for repo in manager.repos:

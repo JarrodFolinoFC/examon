@@ -7,22 +7,24 @@ from .calc_stats import calc_stats
 from .quiz_engine import QuizEngine
 
 
-def build_quiz_engine(tag, formatter_class, auto_answer=None):
-    registry = ExamonItemRegistry.registry(tag)
-    view_mappings = {
-        ExpectedResultQuestion.__name__: {
-            'outputter': ExpectedResultQuestionOutputter(formatter_class),
-            'inputter': auto_answer if auto_answer else AnswerInputter()
-        },
-        InputParameterQuestion.__name__: {
-            'outputter': InputParameterQuestionOutputter(formatter_class),
-            'inputter': auto_answer if auto_answer else AnswerInputter()
-        }, BaseQuestion.__name__: {
-            'outputter': FreeTextQuestionOutputter(formatter_class),
-            'inputter': auto_answer if auto_answer else FreeTextAnswerInputter()
+class QuizEngineFactory:
+    @staticmethod
+    def build(tag, formatter_class, auto_answer=None):
+        registry = ExamonItemRegistry.registry(tag)
+        view_mappings = {
+            ExpectedResultQuestion.__name__: {
+                'outputter': ExpectedResultQuestionOutputter(formatter_class),
+                'inputter': auto_answer if auto_answer else AnswerInputter()
+            },
+            InputParameterQuestion.__name__: {
+                'outputter': InputParameterQuestionOutputter(formatter_class),
+                'inputter': auto_answer if auto_answer else AnswerInputter()
+            }, BaseQuestion.__name__: {
+                'outputter': FreeTextQuestionOutputter(formatter_class),
+                'inputter': auto_answer if auto_answer else FreeTextAnswerInputter()
+            }
         }
-    }
-    return QuizEngine(
-        questions=registry,
-        view_mappings=view_mappings,
-        stats_outputter=calc_stats)
+        return QuizEngine(
+            questions=registry,
+            view_mappings=view_mappings,
+            stats_outputter=calc_stats)
