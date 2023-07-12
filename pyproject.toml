@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "examon"
-version = "0.4.1"
+version = "0.5.0"
 description = ""
 authors = ["Jarrod Folino <jdfolino@icloud.com>"]
 packages = [{include = "examon"}]
