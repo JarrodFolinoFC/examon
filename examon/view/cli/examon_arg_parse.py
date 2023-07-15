@@ -44,4 +44,4 @@ class ExamonArgParseFactory:
     def build():
         parser = argparse.ArgumentParser(prog='Examon CLI')
         cli_args = ExamonArgParse(parser, FormatterOptions()).parse()
-        return (parser, cli_args)
+        return parser, cli_args
