@@ -32,7 +32,9 @@ class InputParameterQuestionOutputter(BaseQuestionOutputter):
         print('')
         super().present_question(question)
         print('')
-        print('What does the parameter need to be for the last print statement to return:')
+        test = 'What does the parameter need to be for'\
+               ' the last print statement to return:'
+        print(test)
         print(question.return_value)
         print('')
         print('')
