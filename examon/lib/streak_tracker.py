@@ -7,6 +7,7 @@ class StreakTracker:
         self.__current_streak += 1
         if self.__current_streak > self.__best:
             self.__best = self.__current_streak
+
     def reset(self):
         self.__current_streak = 0
 

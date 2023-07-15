@@ -1,8 +1,9 @@
 [tool.poetry]
 name = "examon"
-version = "0.5.0"
+version = "0.5.1"
 description = ""
 authors = ["Jarrod Folino <jdfolino@icloud.com>"]
+readme = "README.md"
 packages = [{include = "examon"}]
 
 [tool.poetry.dependencies]
@@ -21,4 +22,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-quiz = 'examon.view.cli.main:process_command'
+examon = 'examon.view.cli.main:process_command'

@@ -1,4 +1,4 @@
-from view.cli.main import CommandLineInterface
+from examon.view.cli.main import process_command
 
 if __name__ == "__main__":
-    CommandLineInterface.process_command()
+    process_command()

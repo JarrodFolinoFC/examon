@@ -1,13 +1,13 @@
 from examon_core.question import *
 from examon_core.examon_item_registry import *
 
-from examon.view.input.answer_question import AutoAnswerInputter, AnswerInputter, FreeTextAnswerInputter
+from examon.view.input.answer_question import AnswerInputter, FreeTextAnswerInputter
 from examon.view.output.question import *
-from .calc_stats import calc_stats
-from .quiz_engine import QuizEngine
+from .calc_stats import Stats
+from .examon_engine import ExamonEngine
 
 
-class QuizEngineFactory:
+class ExamonEngineFactory:
     @staticmethod
     def build(tag, formatter_class, auto_answer=None):
         registry = ExamonItemRegistry.registry(tag)
@@ -24,7 +24,7 @@ class QuizEngineFactory:
                 'inputter': auto_answer if auto_answer else FreeTextAnswerInputter()
             }
         }
-        return QuizEngine(
+        return ExamonEngine(
             questions=registry,
             view_mappings=view_mappings,
-            stats_outputter=calc_stats)
+            stats_outputter=Stats.calc_stats)

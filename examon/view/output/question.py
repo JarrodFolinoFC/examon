@@ -2,6 +2,7 @@ import os
 from pygments import highlight
 from pygments.lexers import PythonLexer
 
+
 class BaseQuestionOutputter():
     def __init__(self, formatter_class):
         self.formatter_class = formatter_class
@@ -58,4 +59,3 @@ class FreeTextQuestionOutputter(BaseQuestionOutputter):
         print('What will this return?')
         print('')
         self.display_print_logs(question)
-

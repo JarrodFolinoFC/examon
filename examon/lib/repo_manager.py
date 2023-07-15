@@ -17,7 +17,8 @@ class RepoManager:
     def install(self):
         print(f"installing {len(self.repos)} repos")
         for repo in self.repos:
-            subprocess.check_call([sys.executable, "-m", "pip", "install", repo['name']])
+            subprocess.check_call(
+                [sys.executable, "-m", "pip", "install", repo['name']])
 
     def reset(self):
         self.repos = []
@@ -33,7 +34,12 @@ class RepoManager:
         self.repos.append(data)
 
     def remove(self, repo_name):
-        index = next((index for (index, d) in enumerate(self.repos) if d["name"] == repo_name), None)
+        index = next(
+            (index for (
+                index,
+                d) in enumerate(
+                self.repos) if d["name"] == repo_name),
+            None)
         del self.repos[index]
 
     def add_active(self, repo):
@@ -83,4 +89,3 @@ class RepoManager:
             }]
         self.active_repos = [RepoManager.DEFAULT_MODULE]
         self.persist()
-

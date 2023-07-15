@@ -1,6 +1,8 @@
 from examon_core.question_response import QuestionResponse
 from examon.lib.streak_tracker import StreakTracker
-class QuizEngine:
+
+
+class ExamonEngine:
     def __init__(self, questions=None,
                  stats_outputter=None,
                  view_mappings=None):
@@ -11,7 +13,6 @@ class QuizEngine:
 
         self.__view_mappings = view_mappings
         self.__stats_outputter = stats_outputter
-
 
     def run(self):
         for question in self.questions:
@@ -29,12 +30,12 @@ class QuizEngine:
 
         self.final_summary()
 
-
     def get_user_input(self, lookup_key, question):
         return self.__view_mappings[lookup_key]['inputter'].prompt(question)
 
     def display(self, lookup, question):
-        self.__view_mappings[lookup]['outputter'].present_summary((self.summary()))
+        self.__view_mappings[lookup]['outputter'].present_summary(
+            (self.summary()))
         self.__view_mappings[lookup]['outputter'].present_question(question)
         return lookup
 

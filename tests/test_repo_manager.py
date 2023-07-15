@@ -1,4 +1,4 @@
-from examon.view.repo_manager import RepoManager
+from examon.lib.repo_manager import RepoManager
 
 import pytest
 

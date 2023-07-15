@@ -13,6 +13,7 @@ OPTIONS = [
     ('raw', RawTokenFormatter)
 ]
 
+
 class FormatterOptions:
     def __init__(self):
         self.formatter_options = defaultdict(lambda: Terminal256Formatter)

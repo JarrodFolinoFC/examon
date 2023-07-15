@@ -3,6 +3,7 @@ import os
 
 from examon.lib.repo_manager import RepoManager
 
+
 class RepoManagerCli:
     @staticmethod
     def process_command(cli_args):
