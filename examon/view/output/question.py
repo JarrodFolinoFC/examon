@@ -7,6 +7,18 @@ class BaseQuestionOutputter():
     def __init__(self, formatter_class):
         self.formatter_class = formatter_class
 
+    def print_metrics(self, question):
+        def calc_difficulty(value):
+            if value == 0:
+                return "Easy"
+            elif value > 0 and value <= 1:
+                return "Medium"
+            elif value > 1 and value < 3:
+                return "Hard"
+            elif value >= 3:
+                return 'Very Hard'
+        print(f'Difficulty: {calc_difficulty(question.metrics.difficulty)}')
+
     def present_summary(self, summary):
         os.system('clear')
         print(f'You are: {summary}')
@@ -22,13 +34,14 @@ class BaseQuestionOutputter():
         if len(question.print_logs) > 1:
             print('Print logs:')
             for log in question.print_logs:
-                print(f' - {log[0]}')
+                print(f' - {log.output}')
             print('')
 
 
 class InputParameterQuestionOutputter(BaseQuestionOutputter):
     def present_question(self, question):
         print('')
+        self.print_metrics(question)
         print('')
         super().present_question(question)
         print('')
@@ -44,7 +57,7 @@ class InputParameterQuestionOutputter(BaseQuestionOutputter):
 class ExpectedResultQuestionOutputter(BaseQuestionOutputter):
     def present_question(self, question):
         print('')
-        print(question.metrics)
+        self.print_metrics(question)
         print('What is the result of the last print statement?')
         print('')
         super().present_question(question)
@@ -55,6 +68,7 @@ class ExpectedResultQuestionOutputter(BaseQuestionOutputter):
 class FreeTextQuestionOutputter(BaseQuestionOutputter):
     def present_question(self, question):
         print('')
+        self.print_metrics(question)
         print('')
         super().present_question(question)
         print('')
