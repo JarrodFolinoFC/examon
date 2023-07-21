@@ -14,14 +14,14 @@ class ExamonArgParse:
     def __setup_args(self):
         subparsers = self.__parser.add_subparsers(
             help='Manage question repositories', dest='command')
-        repo_subparser = subparsers.add_parser(
-            'repo', help='Manage question repositories', aliases=[
-                'repos', 'repository', 'repositories'])
-        repo_subparser.add_argument(
+        package_subparser = subparsers.add_parser(
+            'package', help='Manage question packages', aliases=[
+                'packages'])
+        package_subparser.add_argument(
             'sub_command', help='[add|remove|list|init|help]')
-        repo_subparser.add_argument(
+        package_subparser.add_argument(
             '--name', help='pip repository module name')
-        repo_subparser.add_argument(
+        package_subparser.add_argument(
             '--pip-url', help='pip repository module name')
 
         subparsers.add_parser('help', help='Print this message')

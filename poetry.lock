@@ -61,17 +61,6 @@ files = [
 ]
 
 [[package]]
-name = "consolemenu"
-version = "1.0.1"
-description = "Simplest console menu you've ever seen."
-category = "main"
-optional = false
-python-versions = "*"
-files = [
-    {file = "ConsoleMenu-1.0.1.tar.gz", hash = "sha256:3f541cb396694faa3052a378b9a431cd4485b02a376a100bf2971cf9dfc948b5"},
-]
-
-[[package]]
 name = "dataclasses"
 version = "0.6"
 description = "A backport of the dataclasses module for Python 3.6"
@@ -104,14 +93,14 @@ typing-inspect = "*"
 
 [[package]]
 name = "examon-core"
-version = "1.0.4"
+version = "1.0.8"
 description = "Examon Core Libs"
 category = "main"
 optional = false
 python-versions = ">=3.9,<4.0"
 files = [
-    {file = "examon_core-1.0.4-py3-none-any.whl", hash = "sha256:7539f6df2ab1538395ae4e2ca61bfadfa1e81e11e00de5985a646e50a1d54c06"},
-    {file = "examon_core-1.0.4.tar.gz", hash = "sha256:80daaf0882dafa0ef1f7ac6dd5cbb847a4560109f38c7bd472ca4b25d05f9ceb"},
+    {file = "examon_core-1.0.8-py3-none-any.whl", hash = "sha256:bf096c17e3cc92bed9da0fe8580cd05f610f4e5dbe39f1188e7adda866771a77"},
+    {file = "examon_core-1.0.8.tar.gz", hash = "sha256:0401235a20192309a6bfdc1c0199167200c1f627947987f9300cf93b460541bb"},
 ]
 
 [package.dependencies]
@@ -456,4 +445,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "e3c5d2a286eaf4945f2357ea45c54c92d70e90421027340f46a15409481bda03"
+content-hash = "ffd1cd52cf80bd415ae8deb33cfc57f0e113358d4820f3fa1b45540b7b49a29a"

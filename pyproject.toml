@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "examon"
-version = "0.5.1"
+version = "0.5.4"
 description = ""
 authors = ["Jarrod Folino <jdfolino@icloud.com>"]
 readme = "README.md"
@@ -11,8 +11,7 @@ python = "^3.9"
 pygments = "^2.13.0"
 inquirer = "^3.1.1"
 simple-term-menu = "^1.6.1"
-examon-core = "1.0.4"
-consolemenu = "^1.0.1"
+examon-core = "1.0.8"
 dataclasses-serialization = "^1.3.1"
 
 [tool.poetry.dev-dependencies]

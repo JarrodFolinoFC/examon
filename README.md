@@ -9,23 +9,23 @@
 
 ```shell
 pip install examon
-examon repo add pcap1
-examon repo add_active pcap1
-examon repo install
-examon quiz 
+examon
 ```
 
 ### Customising Your Exam
 
 #### Set the active repos
 
-Examon will only use questions from repositories added which have been marked as active
+Examon will only use questions from repositories you have added which have been marked as active
 
 ```shell
 examon repos list
 examon repos add_active <repo name>
 ```
 * Use the tag filter
+```shell
+examon run --tag "<tag>"
+```
 
 ## Active Exam Repositories
 
@@ -43,6 +43,8 @@ examon repos add_active <repo name>
 ### Install from Pypi
 
 ### Install from GitHub
+
+## Security
 
 ## Roadmap
 
