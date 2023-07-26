@@ -1,6 +1,5 @@
-from examon.lib.package_manager import PackageManager
-
 import pytest
+from examon.lib.package_manager import PackageManager
 
 
 @pytest.fixture(scope="function", autouse=True)
@@ -54,6 +53,14 @@ class TestRepoManager:
     def test_remove_repo(self):
         repo_manager = PackageManager()
         repo_manager.add('examon', 'http://something.com')
+        repo_manager.remove('examon')
+        assert repo_manager.active_packages == []
+        assert repo_manager.packages == []
+
+    def test_remove_duplicate_repo(self):
+        repo_manager = PackageManager()
+        repo_manager.add('examon', 'http://something.com')
+        repo_manager.remove('examon')
         repo_manager.remove('examon')
         assert repo_manager.active_packages == []
         assert repo_manager.packages == []

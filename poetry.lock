@@ -93,14 +93,14 @@ typing-inspect = "*"
 
 [[package]]
 name = "examon-core"
-version = "1.0.8"
+version = "1.0.10"
 description = "Examon Core Libs"
 category = "main"
 optional = false
 python-versions = ">=3.9,<4.0"
 files = [
-    {file = "examon_core-1.0.8-py3-none-any.whl", hash = "sha256:bf096c17e3cc92bed9da0fe8580cd05f610f4e5dbe39f1188e7adda866771a77"},
-    {file = "examon_core-1.0.8.tar.gz", hash = "sha256:0401235a20192309a6bfdc1c0199167200c1f627947987f9300cf93b460541bb"},
+    {file = "examon_core-1.0.10-py3-none-any.whl", hash = "sha256:64a36e19cd017c3ff58c02e860534aa87ac3f077f972464b90418c50970bcfbb"},
+    {file = "examon_core-1.0.10.tar.gz", hash = "sha256:a34139fa28e49d0c9649512c21fdd5f4eaa9681c166783f58a87e62cf34f3334"},
 ]
 
 [package.dependencies]
@@ -445,4 +445,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "ffd1cd52cf80bd415ae8deb33cfc57f0e113358d4820f3fa1b45540b7b49a29a"
+content-hash = "9ccbb1f38d061e2f050bed2a84ce1e8ab2f100acf926cfaaf1ec476a04efcfd4"

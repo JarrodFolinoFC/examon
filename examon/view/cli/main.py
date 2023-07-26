@@ -1,9 +1,21 @@
 import sys
+import signal
+import os
+
 from examon.view.cli.examon_arg_parse import ExamonArgParseFactory
 from examon.view.cli.runner import RunnerCli
 from examon.view.cli.package import PackageManagerCli
 from examon.view.cli.overview import OverviewCli
 from examon.view.cli.interactive import InteractiveCLI
+
+
+def handler(_signum, _frame):
+    os.system('clear')
+    print('Program terminated')
+    sys.exit(0)
+
+
+signal.signal(signal.SIGINT, handler)
 
 
 def process_command():

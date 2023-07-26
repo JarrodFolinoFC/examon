@@ -1,10 +1,15 @@
 from dataclasses_serialization.json import JSONSerializer
 from datetime import datetime
 
+from .examon_config import ExamonConfig
+
 
 class ResultsManager:
-    def __init__(self, question_responses, filters=None, file_name=None):
+    def __init__(self, question_responses, packages,
+                 examon_filter, file_name=None):
         self.question_responses = question_responses
+        self.packages = packages
+        self.examon_filter = examon_filter
         if file_name is None:
             self.file_name = f'{datetime.now().strftime("%d%m%Y%H%M")}_results.json'
         else:
@@ -13,8 +18,12 @@ class ResultsManager:
     def save_to_file(self):
         serialized = JSONSerializer.serialize(
             {
+                'date': datetime.now().strftime("%d%m%Y%H%M"),
+                'packages': self.packages,
+                'filters': self.examon_filter,
                 'responses': self.question_responses
             }
         )
-        with open(self.file_name, "w") as outfile:
+        ExamonConfig.create_config_folder()
+        with open(ExamonConfig().full_file_path(), "w") as outfile:
             outfile.write(str(serialized))

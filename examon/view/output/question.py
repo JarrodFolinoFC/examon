@@ -8,16 +8,7 @@ class BaseQuestionOutputter():
         self.formatter_class = formatter_class
 
     def print_metrics(self, question):
-        def calc_difficulty(value):
-            if value == 0:
-                return "Easy"
-            elif value > 0 and value <= 1:
-                return "Medium"
-            elif value > 1 and value < 3:
-                return "Hard"
-            elif value >= 3:
-                return 'Very Hard'
-        print(f'Difficulty: {calc_difficulty(question.metrics.difficulty)}')
+        print(f'Difficulty: {question.metrics.calc_difficulty()}')
 
     def present_summary(self, summary):
         os.system('clear')
