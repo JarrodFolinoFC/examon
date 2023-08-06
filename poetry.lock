@@ -93,19 +93,20 @@ typing-inspect = "*"
 
 [[package]]
 name = "examon-core"
-version = "1.0.10"
+version = "1.2.1"
 description = "Examon Core Libs"
 category = "main"
 optional = false
-python-versions = ">=3.9,<4.0"
+python-versions = ">=3.9"
 files = [
-    {file = "examon_core-1.0.10-py3-none-any.whl", hash = "sha256:64a36e19cd017c3ff58c02e860534aa87ac3f077f972464b90418c50970bcfbb"},
-    {file = "examon_core-1.0.10.tar.gz", hash = "sha256:a34139fa28e49d0c9649512c21fdd5f4eaa9681c166783f58a87e62cf34f3334"},
+    {file = "examon_core-1.2.1-py3-none-any.whl", hash = "sha256:b1efcefb9f77ef79c687843de3b0d35805e0c22be4ff71ae96a671be607463f0"},
+    {file = "examon_core-1.2.1.tar.gz", hash = "sha256:a40df3d1a9bb4c9b2b8d6d6b4afcc6d56054299f478ee3e15b04a54ea59df0a5"},
 ]
 
 [package.dependencies]
 dataclasses-serialization = ">=1.3.1,<2.0.0"
 radon = ">=6.0.1,<7.0.0"
+restrictedpython = {version = ">=6.1,<7.0", markers = "python_full_version > \"3.9.0\""}
 
 [[package]]
 name = "exceptiongroup"
@@ -241,14 +242,14 @@ testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
 name = "pygments"
-version = "2.15.1"
+version = "2.16.0"
 description = "Pygments is a syntax highlighting package written in Python."
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "Pygments-2.15.1-py3-none-any.whl", hash = "sha256:db2db3deb4b4179f399a09054b023b6a586b76499d36965813c71aa8ed7b5fd1"},
-    {file = "Pygments-2.15.1.tar.gz", hash = "sha256:8ace4d3c1dd481894b2005f560ead0f9f19ee64fe983366be1a21e171d12775c"},
+    {file = "Pygments-2.16.0-py3-none-any.whl", hash = "sha256:90e046f72a58b65edd7e6bd99926ffa1b9d19e23db166905046bea0069c0894d"},
+    {file = "Pygments-2.16.0.tar.gz", hash = "sha256:4f6df32f21dca07a54a0a130bda9a25d2241e9e0a206841d061c85a60cc96145"},
 ]
 
 [package.extras]
@@ -324,6 +325,22 @@ files = [
 
 [package.dependencies]
 setuptools = ">=41.0"
+
+[[package]]
+name = "restrictedpython"
+version = "6.1"
+description = "RestrictedPython is a defined subset of the Python language which allows to provide a program input into a trusted environment."
+category = "main"
+optional = false
+python-versions = ">=3.6, <3.12"
+files = [
+    {file = "RestrictedPython-6.1-py3-none-any.whl", hash = "sha256:0b2f1e54730ee29ac87a5dc684159bf163806038b02aa8561aaea840a8256a9f"},
+    {file = "RestrictedPython-6.1.tar.gz", hash = "sha256:7e58ea15cc92a0b916e0c8ca295e8b2c6d40fee4d12e1a2b5063d86efc279a9c"},
+]
+
+[package.extras]
+docs = ["Sphinx", "sphinx-rtd-theme"]
+test = ["pytest", "pytest-mock"]
 
 [[package]]
 name = "setuptools"
@@ -444,5 +461,5 @@ files = [
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.9"
-content-hash = "9ccbb1f38d061e2f050bed2a84ce1e8ab2f100acf926cfaaf1ec476a04efcfd4"
+python-versions = ">=3.9,<3.12"
+content-hash = "69e4b4bc8ad0575ce77770c512481625637a310e1345ef0564c496205f33ca4d"

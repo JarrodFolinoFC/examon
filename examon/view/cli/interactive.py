@@ -17,8 +17,7 @@ ASCII_ART = """
 
 
 class InteractiveCLI:
-    DEFAULT_PACKAGES = ['examon_beginners_package', 'examon_easy_package',
-                        'examon_intermediate_package', 'examon_pcap_package']
+    DEFAULT_PACKAGES = ['examon_beginners_package']
 
     @staticmethod
     def process_command():
@@ -66,6 +65,6 @@ class InteractiveCLI:
                                          manager.active_packages,
                                          registry_filter)
         results_manager.save_to_file()
-        print(f'Results saved to {results_manager.file_name}')
+        print(f'Results saved to {results_manager.full_path}')
 
         print(examon_engine.summary())

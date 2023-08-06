@@ -14,6 +14,7 @@ class ResultsManager:
             self.file_name = f'{datetime.now().strftime("%d%m%Y%H%M")}_results.json'
         else:
             self.file_name = file_name
+        self.full_path = f'{ExamonConfig().examon_dir}/{self.file_name}'
 
     def save_to_file(self):
         serialized = JSONSerializer.serialize(
@@ -25,5 +26,5 @@ class ResultsManager:
             }
         )
         ExamonConfig.create_config_folder()
-        with open(ExamonConfig().full_file_path(), "w") as outfile:
+        with open(f'{ExamonConfig().examon_dir}/{self.file_name}', "w") as outfile:
             outfile.write(str(serialized))

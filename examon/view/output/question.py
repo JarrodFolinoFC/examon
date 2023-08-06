@@ -8,7 +8,7 @@ class BaseQuestionOutputter():
         self.formatter_class = formatter_class
 
     def print_metrics(self, question):
-        print(f'Difficulty: {question.metrics.calc_difficulty()}')
+        print(f'Difficulty: {question.metrics.categorised_difficulty}')
 
     def present_summary(self, summary):
         os.system('clear')
@@ -36,7 +36,7 @@ class InputParameterQuestionOutputter(BaseQuestionOutputter):
         print('')
         super().present_question(question)
         print('')
-        test = 'What does the parameter need to be for'\
+        test = 'What does the parameter need to be for' \
                ' the last print statement to return:'
         print(test)
         print(question.return_value)
@@ -45,7 +45,7 @@ class InputParameterQuestionOutputter(BaseQuestionOutputter):
         self.display_print_logs(question)
 
 
-class ExpectedResultQuestionOutputter(BaseQuestionOutputter):
+class MultiChoiceQuestionOutputter(BaseQuestionOutputter):
     def present_question(self, question):
         print('')
         self.print_metrics(question)

@@ -1,10 +1,10 @@
-from examon_core.question import BaseQuestion, ExpectedResultQuestion, \
+from examon_core.models.question import BaseQuestion, MultiChoiceQuestion, \
     InputParameterQuestion
 from examon_core.examon_item_registry import ExamonItemRegistry
 
 from examon.view.input.answer_question import AnswerInputter,\
     FreeTextAnswerInputter
-from examon.view.output.question import ExpectedResultQuestionOutputter, \
+from examon.view.output.question import MultiChoiceQuestionOutputter, \
     InputParameterQuestionOutputter, FreeTextQuestionOutputter
 from .stats import Stats
 from .examon_engine import ExamonEngine
@@ -18,8 +18,8 @@ class ExamonEngineFactory:
 
         registry = ExamonItemRegistry.registry(tag)
         view_mappings = {
-            ExpectedResultQuestion.__name__: {
-                'outputter': ExpectedResultQuestionOutputter(formatter_class),
+            MultiChoiceQuestion.__name__: {
+                'outputter': MultiChoiceQuestionOutputter(formatter_class),
                 'inputter': fetch_inputter(auto_answer, AnswerInputter())
             },
             InputParameterQuestion.__name__: {

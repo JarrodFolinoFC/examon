@@ -1,4 +1,4 @@
-from examon_core.question_response import QuestionResponse
+from examon_core.models.question_response import QuestionResponse
 from examon.lib.streak_tracker import StreakTracker
 
 
