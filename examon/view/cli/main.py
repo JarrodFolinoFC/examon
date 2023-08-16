@@ -22,7 +22,9 @@ def process_command():
     parser, cli_args = ExamonArgParseFactory.build()
     if cli_args.command == None:
         InteractiveCLI.process_command()
-    if cli_args.command == 'run':
+    elif cli_args.command == 'run':
+        RunnerCli.process_command(cli_args)
+    elif cli_args.command == 'ingest':
         RunnerCli.process_command(cli_args)
     elif cli_args.command == 'overview':
         OverviewCli.process_command()

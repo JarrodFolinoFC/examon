@@ -2,7 +2,7 @@ from examon_core.models.question import BaseQuestion, MultiChoiceQuestion, \
     InputParameterQuestion
 from examon_core.examon_item_registry import ExamonItemRegistry
 
-from examon.view.input.answer_question import AnswerInputter,\
+from examon.view.input.answer_question import AnswerInputter, \
     FreeTextAnswerInputter
 from examon.view.output.question import MultiChoiceQuestionOutputter, \
     InputParameterQuestionOutputter, FreeTextQuestionOutputter
@@ -12,11 +12,12 @@ from .examon_engine import ExamonEngine
 
 class ExamonEngineFactory:
     @staticmethod
-    def build(tag, formatter_class, auto_answer=None):
+    def build(examon_filter, formatter_class, auto_answer=None):
         def fetch_inputter(enabled, inputter):
             return enabled if enabled else inputter
 
-        registry = ExamonItemRegistry.registry(tag)
+        ExamonItemRegistry.shuffle()
+        registry = ExamonItemRegistry.registry(examon_filter)
         view_mappings = {
             MultiChoiceQuestion.__name__: {
                 'outputter': MultiChoiceQuestionOutputter(formatter_class),

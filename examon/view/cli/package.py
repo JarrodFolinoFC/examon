@@ -9,21 +9,21 @@ class PackageManagerCli:
     def process_command(cli_args):
         package_manager = PackageManager()
         if cli_args.sub_command == 'add':
-            package_manager.add(cli_args.name, cli_args.pip_url)
             package_manager.load()
+            package_manager.add(cli_args.name, cli_args.pip_url)
             package_manager.persist()
         elif cli_args.sub_command == 'remove':
-            package_manager.remove(cli_args.name)
             package_manager.load()
+            package_manager.remove(cli_args.name)
             package_manager.remove_active(cli_args.name)
             package_manager.persist()
         elif cli_args.sub_command == 'add_active':
-            package_manager.add_active(cli_args.name)
             package_manager.load()
+            package_manager.add_active(cli_args.name)
             package_manager.persist()
         elif cli_args.sub_command == 'remove_active':
-            package_manager.remove_active(cli_args.name)
             package_manager.load()
+            package_manager.remove_active(cli_args.name)
             package_manager.persist()
         elif cli_args.sub_command == 'install':
             package_manager.load()

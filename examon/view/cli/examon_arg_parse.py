@@ -33,14 +33,14 @@ class ExamonArgParse:
         run_subparser.add_argument("--tags-mandatory", help='')
         run_subparser.add_argument("--max-questions", help='')
         run_subparser.add_argument("--file", help='')
+        run_subparser.add_argument("--difficulty", help='')
 
         subparsers.add_parser('tag',
                               help='Tag Information',
                               aliases=['tags'])
 
         subparsers.add_parser('overview',
-                              help='Tag Information',
-                              aliases=['tags'])
+                              help='Question Bank Overview')
 
 
 class ExamonArgParseFactory:

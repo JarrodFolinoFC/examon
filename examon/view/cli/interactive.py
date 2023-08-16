@@ -1,4 +1,5 @@
 from examon.lib.package_manager import PackageManager
+from examon.lib.examon_config import ExamonConfig
 from examon.lib.examon_engine_factory import ExamonEngineFactory
 from examon.view.formatter_options import FormatterOptions
 from examon.lib.results_manager import ResultsManager
@@ -22,29 +23,20 @@ class InteractiveCLI:
     @staticmethod
     def process_command():
         print(ASCII_ART)
+        ExamonConfig.create_config_folder()
         manager = PackageManager()
         for package in InteractiveCLI.DEFAULT_PACKAGES:
             manager.add(package)
+            manager.add(package)
+            manager.add_active(package)
 
-        terminal_menu = TerminalMenu(
-            InteractiveCLI.DEFAULT_PACKAGES,
-            title='Please select 1 or more packages',
-            multi_select=True,
-            show_multi_select_hint=True,
-            multi_select_empty_ok=False
-        )
-        terminal_menu.show()
-
-        for active in [*terminal_menu.chosen_menu_entries]:
-            manager.add(active)
-            manager.add_active(active)
         manager.persist()
 
         manager.load()
-        PipInstaller.install(manager.packages)
+        # PipInstaller.install(manager.packages)
         PipInstaller.import_packages(manager.active_packages)
 
-        available_tags = ExamonItemRegistry.unique_tags()
+        available_tags = list(filter(None, ExamonItemRegistry.unique_tags()))
         all_tags_filter = None
         if len(available_tags) > 0:
             terminal_menu = TerminalMenu(

@@ -24,8 +24,8 @@ class BaseQuestionOutputter():
     def display_print_logs(self, question):
         if len(question.print_logs) > 1:
             print('Print logs:')
-            for log in question.print_logs:
-                print(f' - {log.output}')
+            for log in question.print_logs[:-1]:
+                print(f' - {log}')
             print('')
 
 

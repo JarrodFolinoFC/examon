@@ -20,6 +20,7 @@ class RunnerCli:
             tags_any=RunnerCli.get_tags(cli_args),
             tags_all=RunnerCli.tags_as_array(cli_args.tags_mandatory),
             max_questions=questions,
+            difficulty_category=cli_args.difficulty,
         )
         examon_engine = ExamonEngineFactory.build(
             item_registry_filter, FormatterOptions()[

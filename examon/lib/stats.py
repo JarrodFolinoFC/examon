@@ -4,6 +4,7 @@ from collections import Counter
 class Stats:
     @staticmethod
     def calc_stats(questions):
+
         return {
             'total_questions': len(questions),
             'tags_summary': Stats.uniq_tags(questions),

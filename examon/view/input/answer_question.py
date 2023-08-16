@@ -1,4 +1,5 @@
 from simple_term_menu import TerminalMenu
+import pyinputplus as pyip
 
 
 class AnswerInputter:
@@ -16,7 +17,7 @@ class AnswerInputter:
 
 class FreeTextAnswerInputter:
     def prompt(self, _question):
-        return input('Enter your answer\n\n')
+        return pyip.inputStr('Please enter your answer:\n')
 
 
 class AutoAnswerInputter:

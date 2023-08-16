@@ -15,8 +15,8 @@ class PipInstaller:
                 subprocess.run(cmd, stdout=outfile)
 
     @staticmethod
-    def is_package_installed(package_name):
-        if importlib.util.find_spec(package_name) is None:
+    def is_package_installed(package):
+        if importlib.util.find_spec(package) is None:
             return False
         return True
 
