@@ -1,7 +1,14 @@
 class Ingest:
-    def __init__(self, records, driver):
-        self.driver = driver
-        self.records = records
+    def __init__(self, record_driver, blob_driver):
+        self.chain = None
+        self.record_driver = record_driver
+        self.blob_driver = blob_driver
 
     def run(self):
-        self.driver.run()
+        try:
+            self.record_driver.create_all()
+            self.blob_driver.create_files()
+            self.record_driver.set_file_names()
+        except:
+            self.record_driver.delete_all()
+            self.blob_driver.delete_files()

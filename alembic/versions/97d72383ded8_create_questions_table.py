@@ -10,19 +10,19 @@ from typing import Sequence, Union
 from alembic import op
 import sqlalchemy as sa
 
-
 # revision identifiers, used by Alembic.
 revision: str = '97d72383ded8'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
+
 def upgrade() -> None:
     op.create_table(
         'questions',
         sa.Column('id', sa.Integer, primary_key=True),
         sa.Column('unique_id', sa.String(), nullable=False),
-        sa.Column('internal_id', sa.String(), nullable=False),
+        sa.Column('internal_id', sa.String(), nullable=True),
         sa.Column('version', sa.Integer(), nullable=False),
         sa.Column('repository', sa.String(), nullable=False),
         sa.Column('language', sa.String(), nullable=False),
@@ -33,6 +33,7 @@ def upgrade() -> None:
     op.create_table(
         'print_logs',
         sa.Column('id', sa.Integer, primary_key=True),
+        sa.Column('value', sa.String),
         sa.Column(
             "question_id",
             sa.Integer,
@@ -45,6 +46,12 @@ def upgrade() -> None:
     op.create_table(
         'metrics',
         sa.Column('id', sa.Integer, primary_key=True),
+        sa.Column('no_of_functions', sa.Integer()),
+        sa.Column('loc', sa.Integer()),
+        sa.Column('lloc', sa.Integer()),
+        sa.Column('sloc', sa.Integer()),
+        sa.Column('difficulty', sa.Float()),
+        sa.Column('categorised_difficulty', sa.String()),
         sa.Column(
             "question_id",
             sa.Integer,
@@ -56,6 +63,7 @@ def upgrade() -> None:
     op.create_table(
         'choices',
         sa.Column('id', sa.Integer, primary_key=True),
+        sa.Column('value', sa.String),
         sa.Column(
             "question_id",
             sa.Integer,
@@ -67,6 +75,7 @@ def upgrade() -> None:
     op.create_table(
         'tags',
         sa.Column('id', sa.Integer, primary_key=True),
+        sa.Column('value', sa.String),
         sa.Column(
             "question_id",
             sa.Integer,
@@ -74,6 +83,8 @@ def upgrade() -> None:
             nullable=False,
         ),
     )
+
+    # op.create_unique_constraint('tags_value_question_id', 'user', ['tags', 'question_id'])
 
 
 def downgrade() -> None:

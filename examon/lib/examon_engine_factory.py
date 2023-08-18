@@ -12,11 +12,13 @@ from .examon_engine import ExamonEngine
 
 class ExamonEngineFactory:
     @staticmethod
-    def build(examon_filter, formatter_class, auto_answer=None):
+    def build(examon_filter, formatter_class, auto_answer=None, shuffle=False):
         def fetch_inputter(enabled, inputter):
             return enabled if enabled else inputter
 
-        ExamonItemRegistry.shuffle()
+        if shuffle:
+            ExamonItemRegistry.shuffle()
+
         registry = ExamonItemRegistry.registry(examon_filter)
         view_mappings = {
             MultiChoiceQuestion.__name__: {
