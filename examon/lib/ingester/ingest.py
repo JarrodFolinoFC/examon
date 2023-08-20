@@ -8,7 +8,7 @@ class Ingest:
         try:
             self.record_driver.create_all()
             self.blob_driver.create_files()
-            self.record_driver.set_file_names()
         except:
             self.record_driver.delete_all()
             self.blob_driver.delete_files()
+            raise

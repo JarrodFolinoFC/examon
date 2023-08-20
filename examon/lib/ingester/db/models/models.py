@@ -76,7 +76,7 @@ class Question(Base):
     version: Mapped[int]
     repository: Mapped[Optional[str]]
     language: Mapped[Optional[str]]
-    src_filename: Mapped[Optional[str]]
+    src_filename: Mapped[str]
     created_at: Mapped[Optional[str]]
     tags: Mapped[List["Tag"]] = relationship()
     print_logs: Mapped[List["PrintLog"]] = relationship()

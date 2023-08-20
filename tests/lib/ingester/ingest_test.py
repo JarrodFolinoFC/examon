@@ -56,7 +56,7 @@ def load_q3_with_choices():
 def test_db():
     current_working_directory = os.getcwd()
     src_file = f'{current_working_directory}/tests/empty.test.db'
-    destination = f'{current_working_directory}/tests/tmp/test.{uuid.uuid4()}.db'
+    destination = f'{current_working_directory}/tests/tmp/db/test.{uuid.uuid4()}.db'
     shutil.copy(src_file, destination)
     return destination
 
@@ -67,14 +67,17 @@ def run_around_tests():
     yield
     ExamonItemRegistry.reset()
     current_working_directory = os.getcwd()
-    # shutil.rmtree(f'{current_working_directory}/tests/tmp/*.db')
+    for file in os.scandir(f'{current_working_directory}/tests/tmp/db'):
+        if file.name.endswith(".db"):
+            os.unlink(file.path)
 
 
 class TestIngest:
     def run_ingester(self, f):
         f()
+        current_working_directory = os.getcwd()
         test_db_name = test_db()
-        IngestFactory.build('/tmp', test_db_name).run()
+        IngestFactory.build(f'{current_working_directory}/tests/tmp/files', test_db_name).run()
         return test_db_name
 
     def test_creates_multiple_records(self):
@@ -93,7 +96,9 @@ class TestIngest:
                 assert question.version == 1
                 assert question.language == 'python'
                 assert question.unique_id == '24610570444134442526585499076789'
-                assert question.src_filename == '/tmp/myrepo/24610570444134442526585499076789.py'
+                assert question.src_filename == '/Users/jarrod.folino/Dev/examon_proj/examon/tests/tmp/files/myrepo/24610570444134442526585499076789.py'
+
+                assert os.path.exists(question.src_filename)
 
     def test_creates_question_tags_record(self):
         test_db_name = self.run_ingester(load_q1)
