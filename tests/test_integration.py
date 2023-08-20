@@ -1,4 +1,3 @@
-from examon_core.examon_item import examon_item
 from examon_core.examon_item_registry import ItemRegistryFilter
 from examon.lib.examon_engine_factory import ExamonEngineFactory
 from examon.view.formatter_options import FormatterOptions
@@ -6,20 +5,7 @@ from examon.view.input.answer_question import AutoAnswerInputter
 from examon_core.examon_item_registry import ExamonItemRegistry
 
 import pytest
-
-
-def load_fixtures():
-    @examon_item(tags=['a'])
-    def question_1():
-        return 1
-
-    @examon_item(tags=['a'])
-    def question_2():
-        return 2
-
-    @examon_item(tags=['a'])
-    def question_3():
-        return 3
+from .fixtures import *
 
 
 @pytest.fixture(autouse=True)

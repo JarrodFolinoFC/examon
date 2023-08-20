@@ -4,7 +4,7 @@ version = "0.5.8"
 description = ""
 authors = ["Jarrod Folino <jdfolino@icloud.com>"]
 readme = "README.md"
-packages = [{include = "examon"}]
+packages = [{include = "examon"}, {include = "resources/examon.db"}]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.12"
