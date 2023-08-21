@@ -35,6 +35,7 @@ class PackageManagerCli:
                 print(f'{path} created')
         elif sub_command == 'install':
             PipInstaller.install(package_manager.packages)
+            # this is where we ingest
         else:
             print('Invalid subcommand (add, remove, install, list, init)')
 

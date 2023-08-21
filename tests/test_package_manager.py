@@ -27,7 +27,6 @@ class TestRepoManager:
         assert repo_manager.packages == []
         assert repo_manager.active_packages == []
 
-
     def test_add_repo_None(self):
         repo_manager = PackageManager()
         repo_manager.add(None)
@@ -49,7 +48,6 @@ class TestRepoManager:
         assert repo_manager.active_packages == []
         assert repo_manager.packages == []
 
-
     def test_remove_repo(self):
         repo_manager = PackageManager()
         repo_manager.add('examon', 'http://something.com')
@@ -68,7 +66,6 @@ class TestRepoManager:
     def test_remove_repo_non_existing(self):
         pass
 
-
     def test_add_active_repo(self):
         repo_manager = PackageManager()
         repo_manager.add('examon')
@@ -82,7 +79,6 @@ class TestRepoManager:
         repo_manager.remove_active('examon')
         assert repo_manager.active_packages == []
 
-
     def test_add_active_repo_existing(self):
         repo_manager = PackageManager()
         repo_manager.add('examon')
@@ -95,10 +91,10 @@ class TestRepoManager:
         repo_manager.add('examon')
         repo_manager.add_active('examon')
         assert repo_manager.as_dict() == {
+            'mode': None,
             'packages':
                 {
                     'all': [{'name': 'examon'}],
                     'active': ['examon']
                 }
         }
-

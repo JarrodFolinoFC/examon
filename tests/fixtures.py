@@ -27,6 +27,14 @@ def load_q1():
         return 1
 
 
+def load_multichoice():
+    @examon_item(internal_id='question_one', tags=['a', 'b'],
+                 choices=['1', '2', '3'],
+                 repository='myrepo')
+    def question_1():
+        return 1
+
+
 def load_q1_duplicate_tags():
     @examon_item(internal_id='question_one', tags=['a', 'a', 'b'])
     def question_1():
