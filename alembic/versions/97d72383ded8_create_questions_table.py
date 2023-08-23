@@ -21,13 +21,20 @@ def upgrade() -> None:
     op.create_table(
         'questions',
         sa.Column('id', sa.Integer, primary_key=True),
-        sa.Column('unique_id', sa.String(), nullable=False),
+        sa.Column('unique_id', sa.String(), nullable=False, unique=True, index=True),
         sa.Column('internal_id', sa.String(), nullable=True),
         sa.Column('version', sa.Integer(), nullable=False),
         sa.Column('repository', sa.String(), nullable=False),
         sa.Column('language', sa.String(), nullable=False),
         sa.Column('src_filename', sa.String(), nullable=False),
-        sa.Column('created_at', sa.DateTime(), nullable=False),
+        sa.Column('created_at', sa.DateTime(), nullable=False, server_default=sa.func.now()),
+        sa.Column(
+            "updated_at",
+            sa.DateTime(),
+            server_default=sa.func.now(),
+            server_onupdate=sa.func.now(),
+            nullable=False,
+        )
     )
 
     op.create_table(
@@ -41,23 +48,39 @@ def upgrade() -> None:
             nullable=False,
         ),
         sa.Column('log_number', sa.Integer(), nullable=False),
+        sa.Column('created_at', sa.DateTime(), nullable=False, server_default=sa.func.now()),
+        sa.Column(
+            "updated_at",
+            sa.DateTime(),
+            server_default=sa.func.now(),
+            server_onupdate=sa.func.now(),
+            nullable=False,
+        )
     )
 
     op.create_table(
         'metrics',
         sa.Column('id', sa.Integer, primary_key=True),
-        sa.Column('no_of_functions', sa.Integer()),
-        sa.Column('loc', sa.Integer()),
-        sa.Column('lloc', sa.Integer()),
-        sa.Column('sloc', sa.Integer()),
-        sa.Column('difficulty', sa.Float()),
-        sa.Column('categorised_difficulty', sa.String()),
+        sa.Column('no_of_functions', sa.Integer(), nullable=False),
+        sa.Column('loc', sa.Integer(), nullable=False),
+        sa.Column('lloc', sa.Integer(), nullable=False),
+        sa.Column('sloc', sa.Integer(), nullable=False),
+        sa.Column('difficulty', sa.Float(), nullable=False),
+        sa.Column('categorised_difficulty', sa.String(), nullable=False),
         sa.Column(
             "question_id",
             sa.Integer,
             sa.ForeignKey("questions.id"),
             nullable=False,
         ),
+        sa.Column('created_at', sa.DateTime(), nullable=False, server_default=sa.func.now()),
+        sa.Column(
+            "updated_at",
+            sa.DateTime(),
+            server_default=sa.func.now(),
+            server_onupdate=sa.func.now(),
+            nullable=False,
+        )
     )
 
     op.create_table(
@@ -70,18 +93,34 @@ def upgrade() -> None:
             sa.ForeignKey("questions.id"),
             nullable=False,
         ),
+        sa.Column('created_at', sa.DateTime(), nullable=False, server_default=sa.func.now()),
+        sa.Column(
+            "updated_at",
+            sa.DateTime(),
+            server_default=sa.func.now(),
+            server_onupdate=sa.func.now(),
+            nullable=False,
+        )
     )
 
     op.create_table(
         'tags',
         sa.Column('id', sa.Integer, primary_key=True),
-        sa.Column('value', sa.String),
+        sa.Column('value', sa.String, nullable=False),
         sa.Column(
             "question_id",
             sa.Integer,
             sa.ForeignKey("questions.id"),
             nullable=False,
         ),
+        sa.Column('created_at', sa.DateTime(), nullable=False, server_default=sa.func.now()),
+        sa.Column(
+            "updated_at",
+            sa.DateTime(),
+            server_default=sa.func.now(),
+            server_onupdate=sa.func.now(),
+            nullable=False,
+        )
     )
 
     # op.create_unique_constraint('tags_value_question_id', 'user', ['tags', 'question_id'])
