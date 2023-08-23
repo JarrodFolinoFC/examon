@@ -26,6 +26,11 @@ class PackageManagerFactory:
             }]
         package_manager.active_packages = [PackageManagerFactory.DEFAULT_MODULE]
 
+        dirname = os.path.dirname(full_file_path)
+        if not os.path.exists(dirname):
+            os.mkdir(dirname)
+
+        # need to make the file here
         if not os.path.isfile(full_file_path):
             PackageManagerFactory.persist(package_manager)
 
