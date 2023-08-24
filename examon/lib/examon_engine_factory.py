@@ -10,16 +10,20 @@ from .stats import Stats
 from .examon_engine import ExamonEngine
 
 
+def load_questions_from_db():
+    pass
+
+
 class ExamonEngineFactory:
     @staticmethod
-    def build(examon_filter, formatter_class, auto_answer=None, shuffle=False):
+    def build(examon_filter, formatter_class, auto_answer=None, shuffle=False, mode=None):
         def fetch_inputter(enabled, inputter):
             return enabled if enabled else inputter
 
         if shuffle:
             ExamonItemRegistry.shuffle()
 
-        registry = ExamonItemRegistry.registry(examon_filter)
+        questions = ExamonItemRegistry.registry(examon_filter)
         view_mappings = {
             MultiChoiceQuestion.__name__: {
                 'outputter': MultiChoiceQuestionOutputter(formatter_class),
@@ -35,6 +39,6 @@ class ExamonEngineFactory:
             }
         }
         return ExamonEngine(
-            questions=registry,
+            questions=questions,
             view_mappings=view_mappings,
             stats_outputter=Stats.calc_stats)
