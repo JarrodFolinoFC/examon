@@ -7,3 +7,4 @@ dist
 .idea
 /*.json
 *.txt
+tests/tmp/db/*.db

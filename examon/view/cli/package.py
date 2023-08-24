@@ -1,18 +1,23 @@
-import os.path
-import os
-
 from examon.lib.package_manager_factory import PackageManagerFactory
 from examon.lib.pip_installer import PipInstaller
 from examon.lib.examon_config import ExamonConfig
+from examon.lib.ingester.ingest_factory import IngestFactory
+from examon_core.examon_item_registry import ExamonItemRegistry
+
 
 
 class PackageManagerCli:
     @staticmethod
     def process_command(cli_args):
-        path = ExamonConfig().full_file_path()
-        package_manager = PackageManagerFactory.load(path)
+        config = ExamonConfig()
+        path = config.full_file_path()
         sub_command = cli_args.sub_command
 
+        if sub_command == 'init':
+            PackageManagerFactory.persist_default_config(path)
+            return
+
+        package_manager = PackageManagerFactory.load(path)
         if sub_command in ['add', 'remove', 'add_active', 'remove_active']:
             if sub_command == 'add':
                 package_manager.add(cli_args.name, cli_args.pip_url)
@@ -27,15 +32,14 @@ class PackageManagerCli:
 
         if sub_command == 'list':
             PackageManagerCli.print_packages(package_manager)
-        elif sub_command == 'init':
-            if os.path.isfile(path):
-                print(f'{path} already exists')
-            else:
-                PackageManagerFactory.persist_default_config(path)
-                print(f'{path} created')
         elif sub_command == 'install':
             PipInstaller.install(package_manager.packages)
-            # this is where we ingest
+            PipInstaller.import_packages([package['name'] for package in package_manager.packages])
+            if package_manager.mode == 'sqlite3':
+                IngestFactory.build(f"{config.examon_dir}/files",
+                                    f'{config.examon_dir}/examon.db',
+                                    ExamonItemRegistry.registry()).run()
+
         else:
             print('Invalid subcommand (add, remove, install, list, init)')
 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "examon"
-version = "0.5.9"
+version = "0.5.11"
 description = ""
 authors = ["Jarrod Folino <jdfolino@icloud.com>"]
 readme = "README.md"

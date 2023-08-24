@@ -25,6 +25,7 @@ class InteractiveCLI:
     def process_command():
         print(ASCII_ART)
         path = ExamonConfig().full_file_path()
+        PackageManagerFactory.persist_default_config(path)
         manager = PackageManagerFactory.load(path)
         for package in InteractiveCLI.DEFAULT_PACKAGES:
             manager.add(package)

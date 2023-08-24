@@ -12,6 +12,7 @@ class ExamonConfig:
     def full_file_path(self):
         return f'{self.examon_dir}/{self.settings_file}'
 
+
     @staticmethod
     def create_config_folder():
         examon_dir = os.path.expanduser(DEFAULT_FOLDER)

@@ -26,7 +26,8 @@ def run_around_tests():
     ExamonItemRegistry.reset()
     current_working_directory = os.getcwd()
     test_db_name = test_db()
-    IngestFactory.build(f'{current_working_directory}/tests/tmp/files', test_db_name).run()
+    IngestFactory.build(f'{current_working_directory}/tests/tmp/files',
+                        test_db_name, ExamonItemRegistry.registry()).run()
     yield
     ExamonItemRegistry.reset()
 
@@ -36,7 +37,7 @@ class TestBuild:
         f()
         current_working_directory = os.getcwd()
         test_db_name = test_db()
-        IngestFactory.build(f'{current_working_directory}/tests/tmp/files', test_db_name).run()
+        IngestFactory.build(f'{current_working_directory}/tests/tmp/files', test_db_name,ExamonItemRegistry.registry()).run()
         return test_db_name
 
     def test_build_base_question(self):

@@ -9,7 +9,6 @@ class PackageManager:
         self.active_packages = []
         self.mode = None
         self.settings_file = settings_file
-        self.full_file_path = ExamonConfig().full_file_path()
 
     def reset(self):
         self.packages = []
