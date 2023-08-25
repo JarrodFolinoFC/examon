@@ -2,7 +2,7 @@
 
 ## Prequisites
 
-* Python 3.9.15 or later
+* Python 3.9.16 or later
 * Pip
 
 ## Quick Start

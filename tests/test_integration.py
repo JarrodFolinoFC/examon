@@ -5,13 +5,14 @@ from examon.view.input.answer_question import AutoAnswerInputter
 from examon_core.examon_item_registry import ExamonItemRegistry
 
 import pytest
-from .fixtures import *
+from fixtures_loader import FixturesLoader
+
 
 
 @pytest.fixture(autouse=True)
 def run_around_tests():
     ExamonItemRegistry.reset()
-    load_fixtures()
+    FixturesLoader.load_fixtures()
     yield
     ExamonItemRegistry.reset()
 
