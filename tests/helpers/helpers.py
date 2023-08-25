@@ -3,7 +3,7 @@ import uuid
 import os
 from examon.lib.ingester.ingest_factory import IngestFactory
 from examon_core.examon_item_registry import ExamonItemRegistry
-
+from sqlalchemy import create_engine
 
 class Helpers:
     @staticmethod
@@ -31,3 +31,9 @@ class Helpers:
         for directory in os.scandir(f'{cwd}/tests/tmp/files'):
             if os.path.isdir(directory):
                 shutil.rmtree(directory)
+        ExamonItemRegistry.reset()
+
+    @staticmethod
+    def setup_everything(f):
+        test_db_name = Helpers.run_ingester(f)
+        return test_db_name, create_engine(f"sqlite+pysqlite:///{test_db_name}", echo=True)
