@@ -2,15 +2,18 @@ from examon.lib.examon_engine_factory import ExamonEngineFactory
 from examon.lib.results_manager import ResultsManager
 from examon.view.formatter_options import FormatterOptions
 from examon_core.examon_item_registry import ItemRegistryFilter
-from examon.lib.package_manager import PackageManager
+from examon.lib.package_manager_factory import PackageManagerFactory
+from examon.lib.examon_config import ExamonConfig
 from examon.lib.pip_installer import PipInstaller
-
+from examon_core.examon_item_registry import ExamonItemRegistry
 
 class RunnerCli:
     @staticmethod
     def process_command(cli_args):
-        manager = PackageManager()
-        manager.load()
+        path = ExamonConfig().config_full_file_path()
+        PackageManagerFactory.persist_default_config(path)
+
+        manager = PackageManagerFactory.load(path)
         PipInstaller.import_packages(manager.active_packages)
         questions = cli_args.max_questions
         if questions is not None:
@@ -23,7 +26,7 @@ class RunnerCli:
             difficulty_category=cli_args.difficulty,
         )
         examon_engine = ExamonEngineFactory.build(
-            item_registry_filter, FormatterOptions()[
+            ExamonItemRegistry.registry(item_registry_filter), FormatterOptions()[
                 cli_args.formatter])
         examon_engine.run()
 

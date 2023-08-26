@@ -10,7 +10,7 @@ class PackageManagerCli:
     @staticmethod
     def process_command(cli_args):
         config = ExamonConfig()
-        path = config.full_file_path()
+        path = config.config_full_file_path()
         sub_command = cli_args.sub_command
 
         if sub_command == 'init':
