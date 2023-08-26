@@ -12,6 +12,9 @@ class ExamonConfigDirectoryInit:
         if not os.path.exists(dirname):
             os.mkdir(dirname)
 
+        if not os.path.exists(examon_config.results_full_path()):
+            os.mkdir(examon_config.results_full_path())
+
         if not os.path.isfile(db_full_file_path):
             from pathlib import Path
 

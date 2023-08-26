@@ -2,7 +2,7 @@ import os.path
 import os
 import json
 import logging
-from ..package_manager import PackageManager
+from ..settings_manager import SettingsManager
 
 
 class ExamonConfigJsonInit:
@@ -22,7 +22,7 @@ class ExamonConfigJsonInit:
             print(f'{full_file_path} already exists')
             return
 
-        package_manager = PackageManager()
+        package_manager = SettingsManager()
         dirname = os.path.dirname(full_file_path)
         if not os.path.exists(dirname):
             os.mkdir(dirname)

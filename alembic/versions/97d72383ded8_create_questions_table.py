@@ -25,8 +25,9 @@ def upgrade() -> None:
         sa.Column('internal_id', sa.String(), nullable=True),
         sa.Column('version', sa.Integer(), nullable=False),
         sa.Column('repository', sa.String(), nullable=False),
+        sa.Column('answer', sa.String(), nullable=False),
         sa.Column('language', sa.String(), nullable=False),
-        sa.Column('src_filename', sa.String(), nullable=False),
+        sa.Column('src_filename', sa.String(), nullable=False, unique=True),
         sa.Column('created_at', sa.DateTime(), nullable=False, server_default=sa.func.now()),
         sa.Column(
             "updated_at",

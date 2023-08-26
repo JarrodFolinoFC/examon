@@ -8,7 +8,7 @@ from sqlalchemy import create_engine
 class Helpers:
     @staticmethod
     def test_db(current_working_directory):
-        src_file = f'{current_working_directory}/tests/empty.test.db'
+        src_file = f'{current_working_directory}/resources/examon.db'
         destination = f'{current_working_directory}/tests/tmp/db/test.{uuid.uuid4()}.db'
         shutil.copy(src_file, destination)
         return destination

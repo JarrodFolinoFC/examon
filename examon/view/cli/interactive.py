@@ -5,7 +5,7 @@ from examon.lib.examon_engine_factory import ExamonEngineFactory
 from examon.lib.results_manager import ResultsManager
 from examon.view.formatter_options import FormatterOptions
 from examon.lib.pip_installer import PipInstaller
-from examon.lib.package_manager_factory import PackageManagerFactory
+from examon.lib.settings_manager_factory import SettingsManagerFactory
 from examon.lib.storage.fetcher.fetch import Fetch
 from examon.lib.storage.fetcher.sqlite3_fetcher import Sqlite3Fetcher
 
@@ -32,7 +32,7 @@ class InteractiveCLI:
         ExamonConfigJsonInit.persist_default_config(path)
         ExamonConfigDirectoryInit.init_everything(examon_config)
 
-        manager = PackageManagerFactory.build(path)
+        manager = SettingsManagerFactory.build(path)
         for package in InteractiveCLI.DEFAULT_PACKAGES:
             manager.add(package)
             manager.add(package)
@@ -57,15 +57,22 @@ class InteractiveCLI:
         registry_filter = ItemRegistryFilter(tags_any=all_tags_filter)
 
         # check mode
-        questions = InteractiveCLI.load_qs(examon_config, registry_filter)
+        questions = []
+
+        if manager.mode == 'sqlite3':
+            questions = InteractiveCLI.load_qs(examon_config, registry_filter)
+        elif manager.mode == 'memory':
+            questions = ExamonItemRegistry.registry(registry_filter)
+
         examon_engine = ExamonEngineFactory.build(
             questions, FormatterOptions()['terminal256'])
         examon_engine.run()
         results_manager = ResultsManager(examon_engine.responses,
                                          manager.active_packages,
                                          registry_filter)
-        results_manager.save_to_file()
-        print(f'Results saved to {results_manager.full_path}')
+        full_results_file_path = f'{examon_config.results_full_path()}/{ResultsManager.default_filename()}'
+        results_manager.save_to_file(full_results_file_path)
+        print(f'Results saved to {full_results_file_path}')
 
         print(examon_engine.summary())
 

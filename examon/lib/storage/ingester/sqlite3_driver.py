@@ -21,6 +21,7 @@ class Sqlite3Driver:
                 repository = 'something'
                 question_db_record = Question(unique_id=model.unique_id,
                                               internal_id=model.internal_id, version=version_number,
+                                              answer=model.correct_answer,
                                               src_filename=self.filename_strategy.name(model),
                                               repository=repository, language=LANGUAGE,
                                               created_at=datetime.datetime.now())

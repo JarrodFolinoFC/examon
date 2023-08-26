@@ -1,7 +1,7 @@
 import logging
 
 
-class PackageManager:
+class SettingsManager:
     def __init__(self, settings_file='.examon'):
         self.packages = []
         self.active_packages = []

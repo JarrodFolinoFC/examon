@@ -2,7 +2,7 @@ from examon.lib.examon_engine_factory import ExamonEngineFactory
 from examon.lib.results_manager import ResultsManager
 from examon.view.formatter_options import FormatterOptions
 from examon_core.examon_item_registry import ItemRegistryFilter
-from examon.lib.package_manager_factory import PackageManagerFactory
+from examon.lib.settings_manager_factory import SettingsManagerFactory
 from examon.lib.config.examon_config import ExamonConfig
 from examon.lib.config.examon_config_json_init import ExamonConfigJsonInit
 from examon.lib.pip_installer import PipInstaller
@@ -15,7 +15,7 @@ class RunnerCli:
         path = ExamonConfig().config_full_file_path()
         ExamonConfigJsonInit.persist_default_config(path)
 
-        manager = PackageManagerFactory.build(path)
+        manager = SettingsManagerFactory.build(path)
         PipInstaller.import_packages(manager.active_packages)
         questions = cli_args.max_questions
         if questions is not None:
