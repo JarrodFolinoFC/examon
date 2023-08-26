@@ -7,9 +7,8 @@ from ..ingester.question_adapter_factory import build
 
 
 class Sqlite3Fetcher:
-    def __init__(self, db_file=None, filename_strategy=None) -> None:
+    def __init__(self, db_file=None) -> None:
         self.engine = create_engine(f"sqlite+pysqlite:///{db_file}", echo=True)
-        self.filename_strategy = filename_strategy
 
     def load(self, examon_filter=None):
         def array_contains_all(array, has_one):
