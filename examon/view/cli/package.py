@@ -1,9 +1,9 @@
 from examon.lib.package_manager_factory import PackageManagerFactory
 from examon.lib.pip_installer import PipInstaller
-from examon.lib.examon_config import ExamonConfig
-from examon.lib.ingester.ingest_factory import IngestFactory
+from examon.lib.config.examon_config import ExamonConfig
+from examon.lib.storage.ingester.ingest_factory import IngestFactory
 from examon_core.examon_item_registry import ExamonItemRegistry
-
+from examon.lib.config.examon_config_json_init import ExamonConfigJsonInit
 
 
 class PackageManagerCli:
@@ -14,10 +14,10 @@ class PackageManagerCli:
         sub_command = cli_args.sub_command
 
         if sub_command == 'init':
-            PackageManagerFactory.persist_default_config(path)
+            ExamonConfigJsonInit.persist_default_config(path)
             return
 
-        package_manager = PackageManagerFactory.load(path)
+        package_manager = PackageManagerFactory.build(path)
         if sub_command in ['add', 'remove', 'add_active', 'remove_active']:
             if sub_command == 'add':
                 package_manager.add(cli_args.name, cli_args.pip_url)

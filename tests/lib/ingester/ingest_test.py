@@ -3,7 +3,7 @@ import pytest
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
-from examon.lib.ingester.db.models.models import Question
+from examon.lib.storage.ingester.db.models.models import Question
 from examon_core.examon_item_registry import ExamonItemRegistry
 
 from helpers import Helpers

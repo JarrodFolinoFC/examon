@@ -1,5 +1,3 @@
-from examon.lib.examon_config import ExamonConfig
-
 import logging
 
 

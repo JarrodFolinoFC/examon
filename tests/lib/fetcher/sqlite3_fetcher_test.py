@@ -1,11 +1,10 @@
 import pytest
 
-from examon.lib.fetcher.sqlite3 import Sqlite3Fetcher
+from examon.lib.storage.fetcher.sqlite3 import Sqlite3Fetcher
 
 from examon_core.models.question import BaseQuestion, MultiChoiceQuestion
 from examon_core.examon_item_registry import ItemRegistryFilter
 from examon_core.models.code_metrics import CodeMetrics
-from examon.lib.ingester.filename_strategy import SimpleFilenameStrategy
 from helpers import Helpers
 from fixtures_loader import FixturesLoader
 

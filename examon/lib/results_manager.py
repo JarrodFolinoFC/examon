@@ -1,7 +1,7 @@
 from dataclasses_serialization.json import JSONSerializer
 from datetime import datetime
 
-from .examon_config import ExamonConfig
+from .config.examon_config import ExamonConfig
 
 
 class ResultsManager:
