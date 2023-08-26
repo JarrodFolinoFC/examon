@@ -7,16 +7,16 @@ from examon.view.formatter_options import FormatterOptions
 from examon.lib.pip_installer import PipInstaller
 from examon.lib.package_manager_factory import PackageManagerFactory
 from examon.lib.storage.fetcher.fetch import Fetch
-from examon.lib.storage.fetcher.sqlite3 import Sqlite3Fetcher
+from examon.lib.storage.fetcher.sqlite3_fetcher import Sqlite3Fetcher
 
 from examon_core.examon_item_registry import ExamonItemRegistry, ItemRegistryFilter
 from simple_term_menu import TerminalMenu
 
 ASCII_ART = """
-              ,--.                       
-              |                          
-              |-   . , ,-: ;-.-. ,-. ;-. 
-              |     X  | | | | | | | | | 
+              ,--.
+              |
+              |-   . , ,-: ;-.-. ,-. ;-.
+              |     X  | | | | | | | | |
               `--' ' ` `-` ' ' ' `-' ' '
         """
 

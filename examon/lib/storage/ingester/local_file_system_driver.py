@@ -22,4 +22,3 @@ class LocalFileSystemDriver:
             if os.path.exists(filename):
                 # os.remove(filename)
                 pass
-

@@ -20,10 +20,3 @@ class ExamonConfig:
 
     def code_files_dir(self):
         return f'{self.examon_dir}/{self.files_dir}'
-
-    @staticmethod
-    def create_config_folder():
-        examon_dir = os.path.expanduser(DEFAULT_FOLDER)
-        is_exist = os.path.exists(examon_dir)
-        if not is_exist:
-            os.makedirs(examon_dir)

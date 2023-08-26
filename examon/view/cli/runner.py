@@ -8,6 +8,7 @@ from examon.lib.config.examon_config_json_init import ExamonConfigJsonInit
 from examon.lib.pip_installer import PipInstaller
 from examon_core.examon_item_registry import ExamonItemRegistry
 
+
 class RunnerCli:
     @staticmethod
     def process_command(cli_args):
@@ -55,4 +56,3 @@ class RunnerCli:
         if tag_str is None or tag_str == '':
             return None
         return [tag.strip() for tag in tag_str.split(',')]
-

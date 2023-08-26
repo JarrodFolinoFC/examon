@@ -26,13 +26,13 @@ class Sqlite3Driver:
                                               created_at=datetime.datetime.now())
 
                 question_db_record.metrics = Metrics(
-                        no_of_functions=model.metrics.no_of_functions,
-                        loc=model.metrics.loc,
-                        lloc=model.metrics.lloc,
-                        sloc=model.metrics.sloc,
-                        difficulty=model.metrics.difficulty,
+                    no_of_functions=model.metrics.no_of_functions,
+                    loc=model.metrics.loc,
+                    lloc=model.metrics.lloc,
+                    sloc=model.metrics.sloc,
+                    difficulty=model.metrics.difficulty,
 
-                        categorised_difficulty=model.metrics.categorised_difficulty
+                    categorised_difficulty=model.metrics.categorised_difficulty
                 )
                 for tag in model.tags:
                     question_db_record.tags.append(Tag(value=tag))

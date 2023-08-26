@@ -2,11 +2,12 @@ from examon_core.examon_item_registry import ItemRegistryFilter
 from examon.lib.examon_engine_factory import ExamonEngineFactory
 from examon.view.formatter_options import FormatterOptions
 from examon.view.input.answer_question import AutoAnswerInputter
+
+from examon_core.examon_item_registry import ItemRegistryFilter
 from examon_core.examon_item_registry import ExamonItemRegistry
-
 import pytest
-from fixtures_loader import FixturesLoader
 
+from fixtures_loader import FixturesLoader
 
 
 @pytest.fixture(autouse=True)

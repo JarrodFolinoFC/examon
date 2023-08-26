@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from sqlalchemy import or_, and_
+from sqlalchemy import or_
 
 from ..ingester.db.models.models import Question, Tag, Metrics
 from ..ingester.question_adapter_factory import build

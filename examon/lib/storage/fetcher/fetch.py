@@ -5,4 +5,3 @@ class Fetch:
 
     def load(self, examon_filter=None):
         return self.record_driver.load(examon_filter)
-
