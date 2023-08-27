@@ -4,6 +4,7 @@ from examon.lib.settings_manager_factory import SettingsManagerFactory
 from examon.lib.config.examon_config import ExamonConfig
 
 from examon.lib.pip_installer import PipInstaller
+from examon.lib.storage.question_factory import QuestionFactory
 
 
 class OverviewCli:
@@ -14,4 +15,8 @@ class OverviewCli:
         PipInstaller.install(package_manager.packages)
         PipInstaller.import_packages(package_manager.active_packages)
         print('overview')
-        print(Stats.calc_stats(ExamonItemRegistry.registry()))
+        examon_config = ExamonConfig()
+        manager = SettingsManagerFactory.build(examon_config.config_full_file_path())
+        questions = QuestionFactory.load(manager.mode, examon_config)
+
+        print(Stats.calc_stats(questions))

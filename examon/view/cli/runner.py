@@ -6,13 +6,13 @@ from examon.lib.settings_manager_factory import SettingsManagerFactory
 from examon.lib.config.examon_config import ExamonConfig
 from examon.lib.config.examon_config_json_init import ExamonConfigJsonInit
 from examon.lib.pip_installer import PipInstaller
-from examon_core.examon_item_registry import ExamonItemRegistry
-
+from examon.lib.storage.question_factory import QuestionFactory
 
 class RunnerCli:
     @staticmethod
     def process_command(cli_args):
-        path = ExamonConfig().config_full_file_path()
+        config = ExamonConfig()
+        path = config.config_full_file_path()
         ExamonConfigJsonInit.persist_default_config(path)
 
         manager = SettingsManagerFactory.build(path)
@@ -27,8 +27,10 @@ class RunnerCli:
             max_questions=questions,
             difficulty_category=cli_args.difficulty,
         )
+        questions = QuestionFactory.load(manager.mode, config, item_registry_filter)
+
         examon_engine = ExamonEngineFactory.build(
-            ExamonItemRegistry.registry(item_registry_filter), FormatterOptions()[
+            questions, FormatterOptions()[
                 cli_args.formatter])
         examon_engine.run()
 

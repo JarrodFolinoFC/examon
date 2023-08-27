@@ -41,10 +41,16 @@ jobs:
   verify_pip_install:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: install
         run: |
+          pip install poetry
+          poetry install
+          poetry build
           python -m pip install --upgrade pip
-          pip install examon
+          pip install --user dist/examon-0.5.11.tar.gz
           examon package init
           examon package list
+          examon package install
+          examon overview
           

@@ -1,9 +1,10 @@
-from examon.lib.settings_manager_factory import SettingsManagerFactory
-from examon.lib.pip_installer import PipInstaller
 from examon.lib.config.examon_config import ExamonConfig
-from examon.lib.storage.ingester.ingest_factory import IngestFactory
-from examon_core.examon_item_registry import ExamonItemRegistry
 from examon.lib.config.examon_config_json_init import ExamonConfigJsonInit
+from examon.lib.settings_manager_factory import SettingsManagerFactory
+from examon.lib.storage.ingester.ingest_factory import IngestFactory
+from examon.lib.pip_installer import PipInstaller
+
+from examon_core.examon_item_registry import ExamonItemRegistry
 
 
 class PackageManagerCli:
