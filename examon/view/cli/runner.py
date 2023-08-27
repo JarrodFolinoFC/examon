@@ -8,6 +8,7 @@ from examon.lib.config.examon_config_json_init import ExamonConfigJsonInit
 from examon.lib.pip_installer import PipInstaller
 from examon.lib.storage.question_factory import QuestionFactory
 
+
 class RunnerCli:
     @staticmethod
     def process_command(cli_args):
@@ -32,6 +33,8 @@ class RunnerCli:
         examon_engine = ExamonEngineFactory.build(
             questions, FormatterOptions()[
                 cli_args.formatter])
+        if cli_args.dry_run:
+            return
         examon_engine.run()
 
         if cli_args.file:

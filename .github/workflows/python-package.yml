@@ -69,5 +69,6 @@ jobs:
           examon package list
           examon package install
           examon overview
+          examon run --dry-run
           
           

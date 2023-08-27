@@ -1,4 +1,3 @@
-from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from examon.lib.storage.ingester.db.models.models import Question, Tag, PrintLog, Choice, Metrics
 from examon_core.models.question import MultiChoiceQuestion
@@ -8,8 +7,8 @@ LANGUAGE = 'python'
 
 
 class Sqlite3Driver:
-    def __init__(self, db_file=None, filename_strategy=None, models=None) -> None:
-        self.engine = create_engine(f"sqlite+pysqlite:///{db_file}", echo=True)
+    def __init__(self, engine=None, filename_strategy=None, models=None) -> None:
+        self.engine = engine
         self.models = models
         self.filename_strategy = filename_strategy
 
@@ -18,7 +17,7 @@ class Sqlite3Driver:
         with Session(self.engine) as session:
             for model in self.models:
                 version_number = 1
-                repository = 'something'
+                repository = model.repository if model.repository is not None else 'default'
                 question_db_record = Question(unique_id=model.unique_id,
                                               internal_id=model.internal_id, version=version_number,
                                               answer=model.correct_answer,
