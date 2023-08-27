@@ -16,14 +16,13 @@ def load_questions_from_db():
 
 class ExamonEngineFactory:
     @staticmethod
-    def build(examon_filter, formatter_class, auto_answer=None, shuffle=False, mode=None):
+    def build(questions, formatter_class, auto_answer=None, shuffle=False, mode=None):
         def fetch_inputter(enabled, inputter):
             return enabled if enabled else inputter
 
         if shuffle:
             ExamonItemRegistry.shuffle()
 
-        questions = ExamonItemRegistry.registry(examon_filter)
         view_mappings = {
             MultiChoiceQuestion.__name__: {
                 'outputter': MultiChoiceQuestionOutputter(formatter_class),

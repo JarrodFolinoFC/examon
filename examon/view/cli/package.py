@@ -1,23 +1,24 @@
-from examon.lib.package_manager_factory import PackageManagerFactory
+from examon.lib.config.examon_config import ExamonConfig
+from examon.lib.config.examon_config_json_init import ExamonConfigJsonInit
+from examon.lib.settings_manager_factory import SettingsManagerFactory
+from examon.lib.storage.ingester.ingest_factory import IngestFactory
 from examon.lib.pip_installer import PipInstaller
-from examon.lib.examon_config import ExamonConfig
-from examon.lib.ingester.ingest_factory import IngestFactory
-from examon_core.examon_item_registry import ExamonItemRegistry
 
+from examon_core.examon_item_registry import ExamonItemRegistry
 
 
 class PackageManagerCli:
     @staticmethod
     def process_command(cli_args):
         config = ExamonConfig()
-        path = config.full_file_path()
+        path = config.config_full_file_path()
         sub_command = cli_args.sub_command
 
         if sub_command == 'init':
-            PackageManagerFactory.persist_default_config(path)
+            ExamonConfigJsonInit.persist_default_config(path)
             return
 
-        package_manager = PackageManagerFactory.load(path)
+        package_manager = SettingsManagerFactory.build(path)
         if sub_command in ['add', 'remove', 'add_active', 'remove_active']:
             if sub_command == 'add':
                 package_manager.add(cli_args.name, cli_args.pip_url)
@@ -27,7 +28,7 @@ class PackageManagerCli:
                 package_manager.add_active(cli_args.name)
             elif sub_command == 'remove_active':
                 package_manager.remove_active(cli_args.name)
-            PackageManagerFactory.persist(package_manager, path)
+            SettingsManagerFactory.persist(package_manager, path)
             return
 
         if sub_command == 'list':

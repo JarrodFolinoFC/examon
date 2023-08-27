@@ -1,6 +1,5 @@
-from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from examon.lib.ingester.db.models.models import Question, Tag, PrintLog, Choice, Metrics
+from examon.lib.storage.ingester.db.models.models import Question, Tag, PrintLog, Choice, Metrics
 from examon_core.models.question import MultiChoiceQuestion
 import datetime
 
@@ -8,8 +7,8 @@ LANGUAGE = 'python'
 
 
 class Sqlite3Driver:
-    def __init__(self, db_file=None, filename_strategy=None, models=None) -> None:
-        self.engine = create_engine(f"sqlite+pysqlite:///{db_file}", echo=True)
+    def __init__(self, engine=None, filename_strategy=None, models=None) -> None:
+        self.engine = engine
         self.models = models
         self.filename_strategy = filename_strategy
 
@@ -18,21 +17,22 @@ class Sqlite3Driver:
         with Session(self.engine) as session:
             for model in self.models:
                 version_number = 1
-                repository = 'something'
+                repository = model.repository if model.repository is not None else 'default'
                 question_db_record = Question(unique_id=model.unique_id,
                                               internal_id=model.internal_id, version=version_number,
+                                              answer=model.correct_answer,
                                               src_filename=self.filename_strategy.name(model),
                                               repository=repository, language=LANGUAGE,
                                               created_at=datetime.datetime.now())
 
                 question_db_record.metrics = Metrics(
-                        no_of_functions=model.metrics.no_of_functions,
-                        loc=model.metrics.loc,
-                        lloc=model.metrics.lloc,
-                        sloc=model.metrics.sloc,
-                        difficulty=model.metrics.difficulty,
+                    no_of_functions=model.metrics.no_of_functions,
+                    loc=model.metrics.loc,
+                    lloc=model.metrics.lloc,
+                    sloc=model.metrics.sloc,
+                    difficulty=model.metrics.difficulty,
 
-                        categorised_difficulty=model.metrics.categorised_difficulty
+                    categorised_difficulty=model.metrics.categorised_difficulty
                 )
                 for tag in model.tags:
                     question_db_record.tags.append(Tag(value=tag))

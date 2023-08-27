@@ -20,7 +20,7 @@ signal.signal(signal.SIGINT, handler)
 
 def process_command():
     parser, cli_args = ExamonArgParseFactory.build()
-    if cli_args.command == None:
+    if cli_args.command is None:
         InteractiveCLI.process_command()
     elif cli_args.command == 'run':
         RunnerCli.process_command(cli_args)

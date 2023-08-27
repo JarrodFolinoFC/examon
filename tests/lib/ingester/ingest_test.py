@@ -3,11 +3,12 @@ import pytest
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
-from examon.lib.ingester.db.models.models import Question
+from examon.lib.storage.ingester.db.models.models import Question
 from examon_core.examon_item_registry import ExamonItemRegistry
 
 from helpers import Helpers
 from fixtures_loader import FixturesLoader
+from examon.lib.storage.ingester.question_queries import QuestionQueries
 
 
 @pytest.fixture(autouse=True)
@@ -19,6 +20,16 @@ def run_around_tests():
 
 
 class TestIngest:
+
+    def test_creates_multiple_records_dupes(self):
+        test_db_name, engine = Helpers.setup_everything(FixturesLoader.load_all)
+        with Session(engine) as session:
+            assert session.query(func.count(Question.id)).scalar() == 2
+
+        with Session(Helpers.setup_everything(FixturesLoader.load_all,
+                                              existing_test_db_name=test_db_name)[1]) as session:
+            assert session.query(func.count(Question.id)).scalar() == 2
+
     def test_creates_multiple_records(self):
         with Session(Helpers.setup_everything(FixturesLoader.load_all)[1]) as session:
             assert session.query(func.count(Question.id)).scalar() == 2

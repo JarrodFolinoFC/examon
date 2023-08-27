@@ -2,14 +2,14 @@ import os
 import pytest
 from examon_core.examon_item_registry import ExamonItemRegistry
 from examon_core.models.question import BaseQuestion, MultiChoiceQuestion
-from examon.lib.ingester.question_adapter_factory import build
-from examon.lib.ingester.ingest_factory import IngestFactory
+from examon.lib.storage.ingester.question_adapter_factory import build
+from examon.lib.storage.ingester.ingest_factory import IngestFactory
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 from helpers import Helpers
 from fixtures_loader import FixturesLoader
 
-from examon.lib.ingester.db.models.models import Question
+from examon.lib.storage.ingester.db.models.models import Question
 
 
 @pytest.fixture(autouse=True)

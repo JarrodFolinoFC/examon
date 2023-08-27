@@ -1,9 +1,7 @@
-from examon.lib.examon_config import ExamonConfig
-
 import logging
 
 
-class PackageManager:
+class SettingsManager:
     def __init__(self, settings_file='.examon'):
         self.packages = []
         self.active_packages = []
@@ -14,15 +12,16 @@ class PackageManager:
         self.packages = []
         self.active_packages = []
 
-    def add(self, package, url=None):
-        if package is None or package == '':
+    def add(self, package_name, url=None):
+        if package_name is None or package_name == '':
             logging.debug('Cannot add package not specified')
             return
 
-        data = {'name': package}
+        data = {'name': package_name}
         if url:
             data |= {'url': url}
-        if package not in self.packages:
+
+        if package_name not in [package['name'] for package in self.packages]:
             self.packages.append(data)
 
     def add_active(self, package):

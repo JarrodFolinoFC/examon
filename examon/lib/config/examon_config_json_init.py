@@ -2,10 +2,10 @@ import os.path
 import os
 import json
 import logging
-from .package_manager import PackageManager
+from ..settings_manager import SettingsManager
 
 
-class PackageManagerFactory:
+class ExamonConfigJsonInit:
     DEFAULT_MODULE = 'examon_beginners_package'
 
     @staticmethod
@@ -22,7 +22,7 @@ class PackageManagerFactory:
             print(f'{full_file_path} already exists')
             return
 
-        package_manager = PackageManager()
+        package_manager = SettingsManager()
         dirname = os.path.dirname(full_file_path)
         if not os.path.exists(dirname):
             os.mkdir(dirname)
@@ -30,21 +30,9 @@ class PackageManagerFactory:
         package_manager.mode = 'sqlite3'
         package_manager.packages = [
             {
-                'name': PackageManagerFactory.DEFAULT_MODULE
+                'name': ExamonConfigJsonInit.DEFAULT_MODULE
             }]
-        package_manager.active_packages = [PackageManagerFactory.DEFAULT_MODULE]
+        package_manager.active_packages = [ExamonConfigJsonInit.DEFAULT_MODULE]
 
-        # need to make the file here
         if not os.path.isfile(full_file_path):
-            PackageManagerFactory.persist(package_manager, full_file_path)
-
-    @staticmethod
-    def load(full_file_path):
-        with open(full_file_path, 'r') as f:
-            data = json.load(f)
-        package_manager = PackageManager()
-        package_manager.packages = data['packages']['all']
-        package_manager.active_packages = data['packages']['active']
-        package_manager.mode = data['mode']
-
-        return package_manager
+            ExamonConfigJsonInit.persist(package_manager, full_file_path)

@@ -38,13 +38,37 @@ jobs:
     - name: Test with pytest
       run: |
         poetry run pytest
-  verify_pip_install:
+  verify_pip_install_ubuntu:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: install
         run: |
+          pip install poetry
+          poetry install
+          poetry build
           python -m pip install --upgrade pip
-          pip install examon
+          pip install --user dist/examon-0.5.11.tar.gz
           examon package init
           examon package list
+          examon package install
+          examon overview
+  verify_pip_install_macos-12:
+    runs-on: macos-12
+    steps:
+      - uses: actions/checkout@v3
+      - name: install
+        run: |
+          pip3 install poetry
+          poetry install
+          poetry build
+          python -m pip install --upgrade pip
+          pip3 install --user dist/examon-0.5.11.tar.gz
+          export PATH="$PATH:/Users/runner/Library/Python/3.11/bin"
+          examon package init
+          examon package list
+          examon package install
+          examon overview
+          examon run --dry-run
+          
           

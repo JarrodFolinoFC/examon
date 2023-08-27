@@ -28,6 +28,7 @@ class ExamonArgParse:
 
         run_subparser = subparsers.add_parser('run', help='Run the quiz')
         run_subparser.add_argument("--formatter", help='')
+        run_subparser.add_argument("--dry-run", help='', action='store_true')
         run_subparser.add_argument("--tag", help='')
         run_subparser.add_argument("--tags", help='')
         run_subparser.add_argument("--tags-mandatory", help='')
