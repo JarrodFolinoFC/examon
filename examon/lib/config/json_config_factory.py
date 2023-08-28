@@ -1,7 +1,3 @@
-import os
-
-from .config_structure import ExamonConfigStructure
-from .json_config_store import JsonConfigStore
 from examon.lib.config.settings_manager_factory import SettingsManagerFactory
 from examon.lib.pip_installer import PipInstaller
 

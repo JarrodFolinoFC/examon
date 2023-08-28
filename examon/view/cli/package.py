@@ -6,8 +6,8 @@ from examon.lib.storage.ingester.ingest_factory import IngestFactory
 from examon.lib.pip_installer import PipInstaller
 
 from examon_core.examon_item_registry import ExamonItemRegistry
-import os
-
+from examon.lib.config.config_structure import ExamonConfigStructure
+from .validate_config import ValidateConfig
 
 class PackageManagerCli:
     @staticmethod
@@ -20,9 +20,7 @@ class PackageManagerCli:
             ConfigStructureFactory.init_everything()
             return
 
-        if not os.path.exists(config.examon_dir):
-            print('No ~/.examon config directory found. Run `examon package init`')
-            return
+        ValidateConfig.config_dir_exists(config)
 
         package_manager = SettingsManagerFactory.build(path)
         if sub_command in ['add', 'remove', 'add_active', 'remove_active']:
