@@ -1,12 +1,12 @@
+from examon_core.examon_item_registry import ExamonItemRegistry, ItemRegistryFilter
+from simple_term_menu import TerminalMenu
+
 from examon.lib.pip_installer import PipInstaller
 from examon.lib.config.config_structure_factory import ConfigStructureFactory
 from examon.lib.examon_engine_factory import ExamonEngineFactory
 from examon.lib.storage.question_factory import QuestionFactory
 from examon.lib.reporting.results_manager import ResultsManager
 from examon.view.formatter_options import FormatterOptions
-
-from examon_core.examon_item_registry import ExamonItemRegistry, ItemRegistryFilter
-from simple_term_menu import TerminalMenu
 from ...lib.utils.logging import decorator_timer
 
 ASCII_ART = """

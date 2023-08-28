@@ -7,7 +7,7 @@ from examon.view.cli.runner import RunnerCli
 from examon.view.cli.package import PackageManagerCli
 from examon.view.cli.overview import OverviewCli
 from examon.view.cli.interactive import InteractiveCLI
-from examon.lib.config.config_structure_factory import ConfigStructureFactory
+from examon.lib.config import ConfigStructureFactory
 
 
 def handler(_signum, _frame):
