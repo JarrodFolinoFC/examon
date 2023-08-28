@@ -8,7 +8,6 @@ from examon_core.examon_item_registry import ExamonItemRegistry
 
 from helpers import Helpers
 from fixtures_loader import FixturesLoader
-from examon.lib.storage.ingester.question_queries import QuestionQueries
 
 
 @pytest.fixture(autouse=True)

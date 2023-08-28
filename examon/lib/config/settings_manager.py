@@ -2,11 +2,10 @@ import logging
 
 
 class SettingsManager:
-    def __init__(self, settings_file='.examon'):
+    def __init__(self):
         self.packages = []
         self.active_packages = []
         self.mode = None
-        self.settings_file = settings_file
 
     def reset(self):
         self.packages = []

@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from examon.lib.storage.ingester.db.models.models import Question
 
 
-class QuestionQueries:
+class QuestionQuery:
     def __init__(self, engine):
         self.engine = engine
 

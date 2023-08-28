@@ -2,10 +2,10 @@ import os.path
 import os
 import json
 import logging
-from ..settings_manager import SettingsManager
+from .settings_manager import SettingsManager
 
 
-class ExamonConfigJsonInit:
+class JsonConfigStore:
     DEFAULT_MODULE = 'examon_beginners_package'
 
     @staticmethod
@@ -18,21 +18,14 @@ class ExamonConfigJsonInit:
 
     @staticmethod
     def persist_default_config(full_file_path):
-        if os.path.isfile(full_file_path):
-            print(f'{full_file_path} already exists')
-            return
-
         package_manager = SettingsManager()
-        dirname = os.path.dirname(full_file_path)
-        if not os.path.exists(dirname):
-            os.mkdir(dirname)
 
         package_manager.mode = 'sqlite3'
         package_manager.packages = [
             {
-                'name': ExamonConfigJsonInit.DEFAULT_MODULE
+                'name': JsonConfigStore.DEFAULT_MODULE
             }]
-        package_manager.active_packages = [ExamonConfigJsonInit.DEFAULT_MODULE]
+        package_manager.active_packages = [JsonConfigStore.DEFAULT_MODULE]
 
         if not os.path.isfile(full_file_path):
-            ExamonConfigJsonInit.persist(package_manager, full_file_path)
+            JsonConfigStore.persist(package_manager, full_file_path)

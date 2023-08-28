@@ -1,5 +1,5 @@
 import pytest
-from examon.lib.settings_manager import SettingsManager
+from examon.lib.config.settings_manager import SettingsManager
 
 
 @pytest.fixture(scope="function", autouse=True)

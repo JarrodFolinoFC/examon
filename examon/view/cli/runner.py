@@ -1,10 +1,9 @@
 from examon.lib.examon_engine_factory import ExamonEngineFactory
-from examon.lib.results_manager import ResultsManager
+from examon.lib.reporting.results_manager import ResultsManager
 from examon.view.formatter_options import FormatterOptions
 from examon_core.examon_item_registry import ItemRegistryFilter
-from examon.lib.settings_manager_factory import SettingsManagerFactory
-from examon.lib.config.examon_config import ExamonConfig
-from examon.lib.config.examon_config_json_init import ExamonConfigJsonInit
+from examon.lib.config.settings_manager_factory import SettingsManagerFactory
+from examon.lib.config.config_structure_factory import ConfigStructureFactory
 from examon.lib.pip_installer import PipInstaller
 from examon.lib.storage.question_factory import QuestionFactory
 
@@ -12,9 +11,8 @@ from examon.lib.storage.question_factory import QuestionFactory
 class RunnerCli:
     @staticmethod
     def process_command(cli_args):
-        config = ExamonConfig()
+        config = ConfigStructureFactory.init_everything()
         path = config.config_full_file_path()
-        ExamonConfigJsonInit.persist_default_config(path)
 
         manager = SettingsManagerFactory.build(path)
         PipInstaller.import_packages(manager.active_packages)

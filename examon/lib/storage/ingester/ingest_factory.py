@@ -7,7 +7,7 @@ from .sqlite3_driver import Sqlite3Driver
 from .local_file_system_driver import LocalFileSystemDriver
 from .ingest import Ingest
 from .filename_strategy import SimpleFilenameStrategy
-from .question_queries import QuestionQueries
+from .question_query import QuestionQuery
 
 
 class IngestFactory:
@@ -22,7 +22,7 @@ class IngestFactory:
 
         engine = create_engine(f"sqlite+pysqlite:///{db_name}", echo=True)
 
-        ids = QuestionQueries(engine).question_unique_ids()
+        ids = QuestionQuery(engine).question_unique_ids()
         models = [model for model in models if model.unique_id not in ids]
 
         filename_strategy = SimpleFilenameStrategy(base_dir)

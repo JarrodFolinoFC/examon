@@ -2,7 +2,7 @@ import pytest
 import os
 import json
 
-from examon.lib.results_manager import ResultsManager
+from examon.lib.reporting.results_manager import ResultsManager
 
 from examon_core.models.question_response import QuestionResponse
 from examon_core.models.question import BaseQuestion

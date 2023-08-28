@@ -6,7 +6,7 @@ from examon.view.input.answer_question import AnswerInputter, \
     FreeTextAnswerInputter
 from examon.view.output.question import MultiChoiceQuestionOutputter, \
     InputParameterQuestionOutputter, FreeTextQuestionOutputter
-from .stats import Stats
+from .reporting.stats import Stats
 from .examon_engine import ExamonEngine
 
 

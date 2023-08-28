@@ -4,9 +4,9 @@ import os
 DEFAULT_FOLDER = '~/.examon'
 
 
-class ExamonConfig:
-    def __init__(self, settings_file='config.json', sqlite3_db_file='examon.db',
-                 files_dir='files', results_dir='results'):
+class ExamonConfigStructure:
+    def __init__(self, settings_file=None, sqlite3_db_file=None,
+                 files_dir=None, results_dir=None):
         self.settings_file = settings_file
         self.sqlite3_db_file = sqlite3_db_file
         self.files_dir = files_dir
