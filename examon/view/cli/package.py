@@ -6,13 +6,13 @@ from examon.lib.storage.ingester.ingest_factory import IngestFactory
 from examon.lib.pip_installer import PipInstaller
 
 from examon_core.examon_item_registry import ExamonItemRegistry
-from examon.lib.config.config_structure import ExamonConfigStructure
+from examon.lib.config.config_structure_factory import ConfigStructureFactory
 from .validate_config import ValidateConfig
 
 class PackageManagerCli:
     @staticmethod
     def process_command(cli_args):
-        config = ExamonConfigStructure(settings_file='config.json')
+        config = ConfigStructureFactory.default_config()
         path = config.config_full_file_path()
         sub_command = cli_args.sub_command
 

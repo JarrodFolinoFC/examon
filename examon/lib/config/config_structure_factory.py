@@ -8,8 +8,7 @@ class ConfigStructureFactory:
 
     @staticmethod
     def init_everything():
-        examon_config = ExamonConfigStructure(settings_file='config.json', sqlite3_db_file='examon.db',
-                                              files_dir='files', results_dir='results')
+        examon_config = ConfigStructureFactory.default_config()
 
         db_full_file_path = examon_config.sqlite3_full_path()
 
@@ -37,3 +36,8 @@ class ConfigStructureFactory:
             JsonConfigStore.persist_default_config(examon_config.config_full_file_path())
 
         return examon_config
+
+    @staticmethod
+    def default_config():
+        return ExamonConfigStructure(settings_file='config.json', sqlite3_db_file='examon.db',
+                                     files_dir='files', results_dir='results')
