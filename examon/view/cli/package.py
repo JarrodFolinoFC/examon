@@ -38,7 +38,7 @@ class PackageManagerCli:
         if sub_command == 'list':
             PackageManagerCli.print_packages(package_manager)
         elif sub_command == 'install':
-            PipInstaller.install(package_manager.packages)
+            PipInstaller.install(config)
             PipInstaller.import_packages([package['name'] for package in package_manager.packages])
             if package_manager.mode == 'sqlite3':
                 IngestFactory.build(f"{config.examon_dir}/files",

@@ -1,4 +1,4 @@
-from examon.lib.config.json_config_factory import JsonConfigFactory
+from examon.lib.pip_installer import PipInstaller
 from examon.lib.config.config_structure_factory import ConfigStructureFactory
 from examon.lib.examon_engine_factory import ExamonEngineFactory
 from examon.lib.storage.question_factory import QuestionFactory
@@ -26,7 +26,7 @@ class InteractiveCLI:
     def process_command():
         print(ASCII_ART)
         examon_config = ConfigStructureFactory.init_everything()
-        manager = JsonConfigFactory.install_packages(examon_config)
+        manager = PipInstaller.install(examon_config)
 
         examon_engine, results_manager = InteractiveCLI.run_quiz(
             examon_config, manager, ItemRegistryFilter(
