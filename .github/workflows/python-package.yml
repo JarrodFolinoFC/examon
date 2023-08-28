@@ -66,6 +66,7 @@ jobs:
           pip3 install --user dist/examon-0.5.11.tar.gz
           export PATH="$PATH:/Users/runner/Library/Python/3.11/bin"
           examon package init
+          examon package add --name meow
           examon package list
           examon package install
           examon overview

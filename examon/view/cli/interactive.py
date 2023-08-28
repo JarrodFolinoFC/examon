@@ -1,11 +1,8 @@
-from examon.lib.config.examon_config import ExamonConfig
-from examon.lib.config.examon_config_json_init import ExamonConfigJsonInit
-from examon.lib.config.examon_config_directory_init import ExamonConfigDirectoryInit
+from examon.lib.config.json_config_factory import JsonConfigFactory
+from examon.lib.config.config_structure_factory import ConfigStructureFactory
 from examon.lib.examon_engine_factory import ExamonEngineFactory
-from examon.lib.pip_installer import PipInstaller
-from examon.lib.results_manager import ResultsManager
-from examon.lib.settings_manager_factory import SettingsManagerFactory
 from examon.lib.storage.question_factory import QuestionFactory
+from examon.lib.reporting.results_manager import ResultsManager
 from examon.view.formatter_options import FormatterOptions
 
 from examon_core.examon_item_registry import ExamonItemRegistry, ItemRegistryFilter
@@ -28,8 +25,8 @@ class InteractiveCLI:
     @decorator_timer
     def process_command():
         print(ASCII_ART)
-        examon_config = ExamonConfig()
-        manager = InteractiveCLI.setup(examon_config)
+        examon_config = ConfigStructureFactory.init_everything()
+        manager = JsonConfigFactory.install_packages(examon_config)
 
         examon_engine, results_manager = InteractiveCLI.run_quiz(
             examon_config, manager, ItemRegistryFilter(
@@ -41,20 +38,6 @@ class InteractiveCLI:
         print(f'Results saved to {full_results_file_path}')
 
         print(examon_engine.summary())
-
-    @staticmethod
-    def setup(examon_config):
-        path = examon_config.config_full_file_path()
-        ExamonConfigJsonInit.persist_default_config(path)
-        ExamonConfigDirectoryInit.init_everything(examon_config)
-        manager = SettingsManagerFactory.build(path)
-        for package in InteractiveCLI.DEFAULT_PACKAGES:
-            manager.add(package)
-            manager.add_active(package)
-        ExamonConfigJsonInit.persist(manager, path)
-        PipInstaller.install(manager.packages)
-        PipInstaller.import_packages(manager.active_packages)
-        return manager
 
     @staticmethod
     def get_tags():

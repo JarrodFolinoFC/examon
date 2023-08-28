@@ -1,21 +1,27 @@
-from examon.lib.config.examon_config import ExamonConfig
-from examon.lib.config.examon_config_json_init import ExamonConfigJsonInit
-from examon.lib.settings_manager_factory import SettingsManagerFactory
+from examon.lib.config.config_structure import ExamonConfigStructure
+from examon.lib.config.config_structure_factory import ConfigStructureFactory
+from examon.lib.config.json_config_store import JsonConfigStore
+from examon.lib.config.settings_manager_factory import SettingsManagerFactory
 from examon.lib.storage.ingester.ingest_factory import IngestFactory
 from examon.lib.pip_installer import PipInstaller
 
 from examon_core.examon_item_registry import ExamonItemRegistry
+import os
 
 
 class PackageManagerCli:
     @staticmethod
     def process_command(cli_args):
-        config = ExamonConfig()
+        config = ExamonConfigStructure(settings_file='config.json')
         path = config.config_full_file_path()
         sub_command = cli_args.sub_command
 
         if sub_command == 'init':
-            ExamonConfigJsonInit.persist_default_config(path)
+            ConfigStructureFactory.init_everything()
+            return
+
+        if not os.path.exists(config.examon_dir):
+            print('No ~/.examon config directory found. Run `examon package init`')
             return
 
         package_manager = SettingsManagerFactory.build(path)
@@ -28,7 +34,7 @@ class PackageManagerCli:
                 package_manager.add_active(cli_args.name)
             elif sub_command == 'remove_active':
                 package_manager.remove_active(cli_args.name)
-            SettingsManagerFactory.persist(package_manager, path)
+            JsonConfigStore.persist(package_manager, path)
             return
 
         if sub_command == 'list':
