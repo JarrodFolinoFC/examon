@@ -7,6 +7,7 @@ from examon.view.cli.runner import RunnerCli
 from examon.view.cli.package import PackageManagerCli
 from examon.view.cli.overview import OverviewCli
 from examon.view.cli.interactive import InteractiveCLI
+from examon.lib.config.config_structure_factory import ConfigStructureFactory
 
 
 def handler(_signum, _frame):
@@ -24,6 +25,8 @@ def process_command():
         InteractiveCLI.process_command()
     elif cli_args.command == 'run':
         RunnerCli.process_command(cli_args)
+    elif cli_args.command == 'init':
+        ConfigStructureFactory.init_everything()
     elif cli_args.command == 'ingest':
         RunnerCli.process_command(cli_args)
     elif cli_args.command == 'overview':

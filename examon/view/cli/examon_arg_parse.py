@@ -17,6 +17,7 @@ class ExamonArgParse:
         package_subparser = subparsers.add_parser(
             'package', help='Manage question packages', aliases=[
                 'packages'])
+        subparsers.add_parser('init', help='Manage question packages')
         package_subparser.add_argument(
             'sub_command', help='[add|remove|list|init|help]')
         package_subparser.add_argument(
