@@ -3,7 +3,7 @@ import sys
 import importlib.util
 import logging
 
-from examon.lib.config.settings_manager_factory import SettingsManagerFactory
+from examon.lib.config import SettingsManagerFactory
 
 
 class PipInstaller:

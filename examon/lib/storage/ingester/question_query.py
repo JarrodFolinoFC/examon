@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from examon.lib.storage.ingester.db.models.models import Question
+from .db.models.models import Question
 
 
 class QuestionQuery:
