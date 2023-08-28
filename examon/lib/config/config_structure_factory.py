@@ -1,6 +1,6 @@
 import os
 import shutil
-from .json_config_factory import JsonConfigStore
+from .json_config_store import JsonConfigStore
 from .config_structure import ExamonConfigStructure
 
 

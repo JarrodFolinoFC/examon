@@ -3,17 +3,18 @@ from examon.lib.reporting.results_manager import ResultsManager
 from examon.view.formatter_options import FormatterOptions
 from examon_core.examon_item_registry import ItemRegistryFilter
 from examon.lib.config.settings_manager_factory import SettingsManagerFactory
-from examon.lib.config.config_structure_factory import ConfigStructureFactory
 from examon.lib.pip_installer import PipInstaller
 from examon.lib.storage.question_factory import QuestionFactory
-
+from examon.lib.config.config_structure import ExamonConfigStructure
+from .validate_config import ValidateConfig
 
 class RunnerCli:
     @staticmethod
     def process_command(cli_args):
-        config = ConfigStructureFactory.init_everything()
-        path = config.config_full_file_path()
+        config = ExamonConfigStructure(settings_file='config.json')
+        ValidateConfig.config_dir_exists(config)
 
+        path = config.config_full_file_path()
         manager = SettingsManagerFactory.build(path)
         PipInstaller.import_packages(manager.active_packages)
         questions = cli_args.max_questions
