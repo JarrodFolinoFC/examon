@@ -4,12 +4,12 @@ from datetime import datetime
 
 class ResultsManager:
     def __init__(self, question_responses, packages,
-                 examon_filter):
+                 examon_filter) -> None:
         self.question_responses = question_responses
         self.packages = packages
         self.examon_filter = examon_filter
 
-    def save_to_file(self, full_file_path):
+    def save_to_file(self, full_file_path) -> None:
         serialized = JSONStrSerializer.serialize(
             {
                 "date": datetime.now().strftime("%d%m%Y%H%M"),
@@ -22,5 +22,5 @@ class ResultsManager:
             outfile.write(str(serialized))
 
     @staticmethod
-    def default_filename():
+    def default_filename() -> str:
         return f'{datetime.now().strftime("%d%m%Y%H%M")}_results.json'

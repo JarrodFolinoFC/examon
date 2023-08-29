@@ -1,19 +1,20 @@
 from ..sql_db import Question, Tag, PrintLog, Choice, Metrics
 
 from sqlalchemy.orm import Session
-from examon_core.models.question import MultiChoiceQuestion
+from examon_core.models.question import MultiChoiceQuestion, BaseQuestion
 import datetime
 
 LANGUAGE = 'python'
 
 
 class Sqlite3Writer:
-    def __init__(self, engine=None, filename_strategy=None, models=None) -> None:
+    def __init__(self, engine=None, filename_strategy=None,
+                 models: BaseQuestion = None) -> None:
         self.engine = engine
         self.models = models
         self.filename_strategy = filename_strategy
 
-    def create_all(self):
+    def create_all(self) -> None:
         question_db_models = []
         with Session(self.engine) as session:
             for model in self.models:
