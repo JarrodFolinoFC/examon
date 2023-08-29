@@ -2,7 +2,7 @@ from functools import singledispatch
 
 from examon_core.models.question import BaseQuestion, MultiChoiceQuestion
 from examon_core.models.code_metrics import CodeMetrics
-from ..drivers.content.sql_db.models.models import Question
+from ..drivers.content.sql_db import Question
 
 
 @singledispatch

@@ -3,7 +3,7 @@ import pytest
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
-from examon.lib.storage.drivers.content.sql_db.models.models import Question
+from examon.lib.storage.drivers.content.sql_db import Question
 from examon_core.examon_item_registry import ExamonItemRegistry
 
 from helpers import Helpers
@@ -18,7 +18,7 @@ def run_around_tests():
     Helpers.clean()
 
 
-class TestIngest:
+class TestWriter:
 
     def test_creates_multiple_records_dupes(self):
         test_db_name, engine = Helpers.setup_everything(FixturesLoader.load_all)

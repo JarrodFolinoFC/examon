@@ -2,11 +2,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
 
-from ..sql_db.models.models import Question, Tag, Metrics
+from ..sql_db import Question, Tag, Metrics
 from ....write.question_adapter_factory import build
 
 
-class Sqlite3Fetcher:
+class Sqlite3Reader:
     def __init__(self, db_file=None) -> None:
         self.engine = create_engine(f"sqlite+pysqlite:///{db_file}", echo=True)
 

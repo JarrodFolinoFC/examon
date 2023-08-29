@@ -1,4 +1,4 @@
-class LocalFileSystemLoader:
+class LocalFileSystemReader:
     def __init__(self, path):
         self.path = path
 

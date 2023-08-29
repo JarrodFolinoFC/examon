@@ -1,7 +1,7 @@
 import shutil
 import uuid
 import os
-from examon.lib.storage.write.ingest_factory import IngestFactory
+from examon.lib.storage.examon_writer_factory import ExamonWriterFactory
 from examon_core.examon_item_registry import ExamonItemRegistry
 from sqlalchemy import create_engine
 
@@ -23,7 +23,7 @@ class Helpers:
         else:
             test_db_name = existing_test_db_name
 
-        IngestFactory.build(f'{cwd}/tests/tmp/files', test_db_name,
+        ExamonWriterFactory.build(f'{cwd}/tests/tmp/files', test_db_name,
                             ExamonItemRegistry.registry()).run()
         return test_db_name
 

@@ -3,13 +3,13 @@ import pytest
 from examon_core.examon_item_registry import ExamonItemRegistry
 from examon_core.models.question import BaseQuestion, MultiChoiceQuestion
 from examon.lib.storage.write.question_adapter_factory import build
-from examon.lib.storage.write.ingest_factory import IngestFactory
+from examon.lib.storage.examon_writer_factory import ExamonWriterFactory
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 from helpers import Helpers
 from fixtures_loader import FixturesLoader
 
-from examon.lib.storage.drivers.content.sql_db.models.models import Question
+from examon.lib.storage.drivers.content.sql_db import Question
 
 
 @pytest.fixture(autouse=True)
@@ -17,7 +17,7 @@ def run_around_tests():
     Helpers.clean()
     current_working_directory = os.getcwd()
     test_db_name = Helpers.test_db(current_working_directory)
-    IngestFactory.build(f'{current_working_directory}/tests/tmp/files',
+    ExamonWriterFactory.build(f'{current_working_directory}/tests/tmp/files',
                         test_db_name, ExamonItemRegistry.registry()).run()
     yield
     Helpers.clean()

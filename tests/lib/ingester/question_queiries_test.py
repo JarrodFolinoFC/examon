@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from examon_core.examon_item_registry import ExamonItemRegistry
 
-from examon.lib.storage.drivers.content.sql_db.models.question_query import QuestionQuery
+from examon.lib.storage.drivers.content.sql_db import QuestionQuery
 
 from helpers import Helpers
 from fixtures_loader import FixturesLoader
