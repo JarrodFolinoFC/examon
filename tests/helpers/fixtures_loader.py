@@ -15,6 +15,7 @@ class FixturesLoader:
         @examon_item(tags=['a_tag', 'b_tag', 'c_tag'])
         def question_3():
             return 1
+
     @staticmethod
     def load_mixed():
         @examon_item(tags=['a'])

@@ -32,7 +32,7 @@ class TestResultManager:
         question_responses = [build_qr()]
         examon_filter = None
         results_manager = ResultsManager([question_responses], packages, examon_filter)
-        filename = f'{os.getcwd()}/tests/tmp/results/results.json'
+        filename = f'{os.getcwd()}/tests/tmp/.examon/results/results.json'
 
         results_manager.save_to_file(filename)
         with open(filename, 'r') as file:

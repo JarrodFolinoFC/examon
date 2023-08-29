@@ -9,8 +9,11 @@ from ....write.question_adapter_factory import build
 
 
 class Sqlite3Reader:
-    def __init__(self, db_file: str) -> None:
-        self.engine = create_engine(f"sqlite+pysqlite:///{db_file}", echo=True)
+    def __init__(self, db_file: str = None, engine=None) -> None:
+        if engine is not None:
+            self.engine = engine
+        else:
+            self.engine = create_engine(f"sqlite+pysqlite:///{db_file}", echo=True)
 
     def load(self, examon_filter: ItemRegistryFilter = None) -> list[BaseQuestion]:
         def array_contains_all(array, has_one):

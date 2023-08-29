@@ -9,7 +9,7 @@ from .validate_config import ValidateConfig
 class PackageManagerCli:
     @staticmethod
     def process_command(cli_args):
-        config = ConfigDirFactory.default_config()
+        config = ConfigDirFactory.build()
         path = config.config_full_file_path()
         sub_command = cli_args.sub_command
 

@@ -11,7 +11,7 @@ from .validate_config import ValidateConfig
 class RunnerCli:
     @staticmethod
     def process_command(cli_args):
-        config = ConfigDirFactory.default_config()
+        config = ConfigDirFactory.build()
         ValidateConfig.config_dir_exists(config)
 
         path = config.config_full_file_path()

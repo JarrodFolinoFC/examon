@@ -15,10 +15,6 @@ from examon.lib.storage.drivers.content.sql_db import Question
 @pytest.fixture(autouse=True)
 def run_around_tests():
     Helpers.clean()
-    current_working_directory = os.getcwd()
-    test_db_name = Helpers.test_db(current_working_directory)
-    ExamonWriterFactory.build(f'{current_working_directory}/tests/tmp/files',
-                        test_db_name, ExamonItemRegistry.registry()).run()
     yield
     Helpers.clean()
 
@@ -40,8 +36,7 @@ class TestBuild:
         assert build1.choices == ['1', '2', '3']
 
     def test_build_db_question_with_choices(self):
-        test_db_name = Helpers.run_ingester(FixturesLoader.load_multichoice)
-        engine = create_engine(f"sqlite+pysqlite:///{test_db_name}", echo=True)
+        engine = Helpers.setup_everything2(FixturesLoader.load_multichoice)
         with Session(engine) as session:
             stmt = select(Question).where(Question.internal_id == 'question_one')
             for question in session.scalars(stmt, 0):
@@ -49,8 +44,7 @@ class TestBuild:
                 assert build1.choices == ['1', '2', '3']
 
     def test_build_db_question(self):
-        test_db_name = Helpers.run_ingester(FixturesLoader.load_q1)
-        engine = create_engine(f"sqlite+pysqlite:///{test_db_name}", echo=True)
+        engine = Helpers.setup_everything2(FixturesLoader.load_q1)
         with Session(engine) as session:
             stmt = select(Question).where(Question.internal_id == 'question_one')
             for question in session.scalars(stmt, 0):
