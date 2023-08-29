@@ -1,5 +1,5 @@
 from examon.lib.reporting.stats import Stats
-from examon.lib.config import SettingsManagerFactory, ConfigStructureFactory
+from examon.lib.config import SettingsManagerFactory, ConfigDirFactory
 from examon.lib.pip_installer import PipInstaller
 from examon.lib.storage.examon_reader_factory import ExamonReaderFactory
 from .validate_config import ValidateConfig
@@ -8,7 +8,7 @@ from .validate_config import ValidateConfig
 class OverviewCli:
     @staticmethod
     def process_command():
-        config = ConfigStructureFactory.default_config()
+        config = ConfigDirFactory.default_config()
         ValidateConfig.config_dir_exists(config)
 
         PipInstaller.install(config)

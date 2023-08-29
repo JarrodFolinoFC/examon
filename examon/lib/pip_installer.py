@@ -9,8 +9,8 @@ from examon.lib.config import SettingsManagerFactory
 class PipInstaller:
 
     @staticmethod
-    def install(examon_config):
-        path = examon_config.config_full_file_path()
+    def install(examon_config_dir):
+        path = examon_config_dir.config_full_file_path()
         manager = SettingsManagerFactory.build(path)
         logging.info(f"installing {len(manager.packages)} repos")
         for package in manager.packages:

@@ -1,7 +1,7 @@
 from examon_core.examon_item_registry import ExamonItemRegistry
 
-from examon.lib.config import JsonConfigStore, ConfigStructureFactory, SettingsManagerFactory
-from examon.lib.storage.write.ingest_factory import IngestFactory
+from examon.lib.config import JsonConfigStore, ConfigDirFactory, SettingsManagerFactory
+from examon.lib.storage.examon_writer_factory import ExamonWriterFactory
 from examon.lib.pip_installer import PipInstaller
 from .validate_config import ValidateConfig
 
@@ -9,12 +9,12 @@ from .validate_config import ValidateConfig
 class PackageManagerCli:
     @staticmethod
     def process_command(cli_args):
-        config = ConfigStructureFactory.default_config()
+        config = ConfigDirFactory.default_config()
         path = config.config_full_file_path()
         sub_command = cli_args.sub_command
 
         if sub_command == 'init':
-            ConfigStructureFactory.init_everything()
+            ConfigDirFactory.init_everything()
             return
 
         ValidateConfig.config_dir_exists(config)
@@ -38,7 +38,7 @@ class PackageManagerCli:
             PipInstaller.install(config)
             PipInstaller.import_packages([package['name'] for package in package_manager.packages])
             if package_manager.mode == 'sqlite3':
-                IngestFactory.build(f"{config.examon_dir}/files",
+                ExamonWriterFactory.build(f"{config.examon_dir}/files",
                                     f'{config.examon_dir}/examon.db',
                                     ExamonItemRegistry.registry()).run()
 

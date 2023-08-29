@@ -1,4 +1,4 @@
-from ..sql_db.models.models import Question, Tag, PrintLog, Choice, Metrics
+from ..sql_db import Question, Tag, PrintLog, Choice, Metrics
 
 from sqlalchemy.orm import Session
 from examon_core.models.question import MultiChoiceQuestion
@@ -7,7 +7,7 @@ import datetime
 LANGUAGE = 'python'
 
 
-class Sqlite3Driver:
+class Sqlite3Writer:
     def __init__(self, engine=None, filename_strategy=None, models=None) -> None:
         self.engine = engine
         self.models = models
