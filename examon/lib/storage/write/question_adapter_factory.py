@@ -6,22 +6,22 @@ from ..drivers.content.sql_db import Question
 
 
 @singledispatch
-def build(question):
+def build(question) -> list[BaseQuestion]:
     raise Exception('NotSupported')
 
 
 @build.register(BaseQuestion)
-def _(question):
+def _(question) -> list[BaseQuestion]:
     return question
 
 
 @build.register(MultiChoiceQuestion)
-def _(question):
+def _(question) -> list[BaseQuestion]:
     return question
 
 
 @build.register(Question)
-def _(question):
+def _(question) -> list[BaseQuestion]:
     klass = None
     if len(question.choices) == 0:
         klass = BaseQuestion

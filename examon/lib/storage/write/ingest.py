@@ -1,9 +1,9 @@
 class Writer:
-    def __init__(self, record_driver, blob_driver):
+    def __init__(self, record_driver, blob_driver) -> None:
         self.record_driver = record_driver
         self.blob_driver = blob_driver
 
-    def run(self):
+    def run(self) -> None:
         try:
             self.record_driver.create_all()
             self.blob_driver.create_files()

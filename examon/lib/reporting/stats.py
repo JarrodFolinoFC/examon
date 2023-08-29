@@ -3,7 +3,7 @@ from collections import Counter
 
 class Stats:
     @staticmethod
-    def calc_stats(questions):
+    def calc_stats(questions: list):
 
         return {
             'total_questions': len(questions),
@@ -12,7 +12,7 @@ class Stats:
         }
 
     @staticmethod
-    def tag_count(questions):
+    def tag_count(questions: list):
         counter = Counter()
         for q in questions:
             counter.update(q.tags)
@@ -20,7 +20,7 @@ class Stats:
         return counter
 
     @staticmethod
-    def uniq_tags(questions):
+    def uniq_tags(questions: list):
         tag_set = set()
         [[tag_set.add(tag) for tag in q.tags] for q in questions]
         return list(tag_set)

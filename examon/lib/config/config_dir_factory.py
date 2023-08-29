@@ -7,7 +7,7 @@ from .config_dir import ExamonConfigDir
 class ConfigDirFactory:
 
     @staticmethod
-    def init_everything():
+    def init_everything() -> ExamonConfigDir:
         examon_config_dir = ConfigDirFactory.default_config()
 
         db_full_file_path = examon_config_dir.sqlite3_full_path()
@@ -38,6 +38,6 @@ class ConfigDirFactory:
         return examon_config_dir
 
     @staticmethod
-    def default_config():
+    def default_config() -> ExamonConfigDir:
         return ExamonConfigDir(settings_file='config.json', sqlite3_db_file='examon.db',
                                      files_dir='files', results_dir='results')
