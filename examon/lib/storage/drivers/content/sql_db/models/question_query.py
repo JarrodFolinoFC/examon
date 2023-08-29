@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from .db.models.models import Question
+from .models import Question
 
 
 class QuestionQuery:

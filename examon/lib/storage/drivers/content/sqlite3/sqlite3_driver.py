@@ -1,4 +1,4 @@
-from .db.models.models import Question, Tag, PrintLog, Choice, Metrics
+from ..sql_db.models.models import Question, Tag, PrintLog, Choice, Metrics
 
 from sqlalchemy.orm import Session
 from examon_core.models.question import MultiChoiceQuestion

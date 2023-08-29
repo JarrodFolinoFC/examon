@@ -1,7 +1,7 @@
 import shutil
 import uuid
 import os
-from examon.lib.storage.ingester.ingest_factory import IngestFactory
+from examon.lib.storage.write.ingest_factory import IngestFactory
 from examon_core.examon_item_registry import ExamonItemRegistry
 from sqlalchemy import create_engine
 

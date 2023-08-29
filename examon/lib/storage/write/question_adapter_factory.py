@@ -2,7 +2,7 @@ from functools import singledispatch
 
 from examon_core.models.question import BaseQuestion, MultiChoiceQuestion
 from examon_core.models.code_metrics import CodeMetrics
-from examon.lib.storage.ingester.db.models.models import Question
+from ..drivers.content.sql_db.models.models import Question
 
 
 @singledispatch
@@ -22,9 +22,6 @@ def _(question):
 
 @build.register(Question)
 def _(question):
-    with open(question.src_filename) as f:
-        function_src = f.read()
-
     klass = None
     if len(question.choices) == 0:
         klass = BaseQuestion
@@ -37,7 +34,6 @@ def _(question):
         print_logs=[q.value for q in question.print_logs],
         tags=[q.value for q in question.tags],
         correct_answer=question.answer,
-        function_src=function_src,
         metrics=CodeMetrics(code_as_string="",
                             lloc=question.metrics.lloc,
                             loc=question.metrics.loc,
@@ -47,6 +43,7 @@ def _(question):
                             categorised_difficulty=question.metrics.categorised_difficulty
                             )
     )
+    question_model.src_filename = question.src_filename
 
     if question_model.__class__ == MultiChoiceQuestion:
         question_model.choices = [q.value for q in question.choices]

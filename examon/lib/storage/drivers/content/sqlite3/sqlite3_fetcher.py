@@ -2,8 +2,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
 
-from ..ingester.db.models.models import Question, Tag, Metrics
-from ..ingester.question_adapter_factory import build
+from ..sql_db.models.models import Question, Tag, Metrics
+from ....write.question_adapter_factory import build
 
 
 class Sqlite3Fetcher:

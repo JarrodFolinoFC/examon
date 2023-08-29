@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from examon_core.examon_item_registry import ExamonItemRegistry
 
-from examon.lib.storage.ingester.question_query import QuestionQuery
+from examon.lib.storage.drivers.content.sql_db.models.question_query import QuestionQuery
 
 from helpers import Helpers
 from fixtures_loader import FixturesLoader
@@ -18,7 +18,7 @@ def run_around_tests():
     Helpers.clean()
 
 
-class TestIngest:
+class TestQuestionQuery:
     def test_qq(self):
         with Session(Helpers.setup_everything(FixturesLoader.load_q1)[1]) as _:
             pass

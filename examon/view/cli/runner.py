@@ -4,7 +4,7 @@ from examon.view.formatter_options import FormatterOptions
 from examon_core.examon_item_registry import ItemRegistryFilter
 from examon.lib.config import SettingsManagerFactory, ConfigStructureFactory
 from examon.lib.pip_installer import PipInstaller
-from examon.lib.storage.question_factory import QuestionFactory
+from examon.lib.storage.examon_reader_factory import ExamonReaderFactory
 from .validate_config import ValidateConfig
 
 
@@ -27,8 +27,7 @@ class RunnerCli:
             max_questions=questions,
             difficulty_category=cli_args.difficulty,
         )
-        questions = QuestionFactory.load(manager.mode, config, item_registry_filter)
-
+        questions = ExamonReaderFactory.load(config, examon_filter=item_registry_filter)
         examon_engine = ExamonEngineFactory.build(
             questions, FormatterOptions()[
                 cli_args.formatter])

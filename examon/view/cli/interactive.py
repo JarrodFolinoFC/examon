@@ -4,7 +4,7 @@ from simple_term_menu import TerminalMenu
 from examon.lib.pip_installer import PipInstaller
 from examon.lib.config.config_structure_factory import ConfigStructureFactory
 from examon.lib.examon_engine_factory import ExamonEngineFactory
-from examon.lib.storage.question_factory import QuestionFactory
+from examon.lib.storage.examon_reader_factory import ExamonReaderFactory
 from examon.lib.reporting.results_manager import ResultsManager
 from examon.view.formatter_options import FormatterOptions
 from ...lib.utils.logging import decorator_timer
@@ -56,7 +56,7 @@ class InteractiveCLI:
 
     @staticmethod
     def run_quiz(examon_config, manager, registry_filter):
-        questions = QuestionFactory.load(manager.mode, examon_config, registry_filter)
+        questions = ExamonReaderFactory.load(examon_config, examon_filter=registry_filter)
         examon_engine = ExamonEngineFactory.build(
             questions, FormatterOptions()['terminal256'])
         examon_engine.run()
