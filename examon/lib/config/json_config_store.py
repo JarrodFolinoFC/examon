@@ -9,7 +9,7 @@ class JsonConfigStore:
     DEFAULT_MODULE = 'examon_beginners_package'
 
     @staticmethod
-    def persist(package_manager, full_file_path):
+    def persist(package_manager, full_file_path: str):
         f = open(full_file_path, "w")
         json_object = json.dumps(package_manager.as_dict(), indent=4)
         f.write(json_object)
@@ -17,7 +17,7 @@ class JsonConfigStore:
         logging.info(f'config saved to {full_file_path}')
 
     @staticmethod
-    def persist_default_config(full_file_path):
+    def persist_default_config(full_file_path: str):
         package_manager = SettingsManager()
 
         package_manager.mode = 'sqlite3'

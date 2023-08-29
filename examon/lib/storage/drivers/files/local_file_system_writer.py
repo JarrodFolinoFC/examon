@@ -2,11 +2,11 @@ import os
 
 
 class LocalFileSystemDriver:
-    def __init__(self, filename_strategy=None, models=None):
+    def __init__(self, filename_strategy=None, models: list = None):
         self.filename_strategy = filename_strategy
         self.models = models
 
-    def create_files(self):
+    def create_files(self) -> None:
         for model in self.models:
             full_file_path = self.filename_strategy.name(model)
             full_dirname = os.path.dirname(full_file_path)
@@ -16,7 +16,7 @@ class LocalFileSystemDriver:
             f.write(model.function_src)
             f.close()
 
-    def delete_files(self):
+    def delete_files(self) -> None:
         for model in self.models:
             filename = self.filename_strategy.name(model)
             if os.path.exists(filename):
