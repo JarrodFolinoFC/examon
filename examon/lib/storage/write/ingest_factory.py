@@ -3,11 +3,11 @@ import os
 import shutil
 from sqlalchemy import create_engine
 
-from .sqlite3_driver import Sqlite3Driver
-from .local_file_system_driver import LocalFileSystemDriver
+from ..drivers.content.sqlite3.sqlite3_driver import Sqlite3Driver
+from ..drivers.files.local_file_system_driver import LocalFileSystemDriver
 from .ingest import Ingest
 from .filename_strategy import SimpleFilenameStrategy
-from .question_query import QuestionQuery
+from ..drivers.content.sql_db.models.question_query import QuestionQuery
 
 
 class IngestFactory:

@@ -1,6 +1,6 @@
 import pytest
 
-from examon.lib.storage.fetcher.sqlite3_fetcher import Sqlite3Fetcher
+from examon.lib.storage.drivers.content.sqlite3.sqlite3_fetcher import Sqlite3Fetcher
 
 from examon_core.models.question import BaseQuestion, MultiChoiceQuestion
 from examon_core.examon_item_registry import ItemRegistryFilter

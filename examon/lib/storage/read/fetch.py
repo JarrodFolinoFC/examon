@@ -4,4 +4,6 @@ class Fetch:
         self.blob_driver = blob_driver
 
     def load(self, examon_filter=None):
-        return self.record_driver.load(examon_filter)
+        models = self.record_driver.load(examon_filter)
+        self.blob_driver.load(models)
+        return models

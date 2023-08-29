@@ -2,14 +2,14 @@ import os
 import pytest
 from examon_core.examon_item_registry import ExamonItemRegistry
 from examon_core.models.question import BaseQuestion, MultiChoiceQuestion
-from examon.lib.storage.ingester.question_adapter_factory import build
-from examon.lib.storage.ingester.ingest_factory import IngestFactory
+from examon.lib.storage.write.question_adapter_factory import build
+from examon.lib.storage.write.ingest_factory import IngestFactory
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 from helpers import Helpers
 from fixtures_loader import FixturesLoader
 
-from examon.lib.storage.ingester.db.models.models import Question
+from examon.lib.storage.drivers.content.sql_db.models.models import Question
 
 
 @pytest.fixture(autouse=True)
@@ -60,9 +60,6 @@ class TestBuild:
                 assert build1.unique_id == '94906873137099624396142246939254'
                 assert build1.print_logs == ['1']
                 assert build1.tags == ['a', 'b']
-                assert 'def question_1():' in build1.function_src
-                assert 'return 1' in build1.function_src
-                assert 'print(question_1())' in build1.function_src
                 assert build1.metrics.lloc == 3
                 assert build1.metrics.loc == 4
                 assert build1.metrics.sloc == 3

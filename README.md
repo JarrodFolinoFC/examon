@@ -1,14 +1,24 @@
 # ExamOn
 
+## What is ExamOn
+* Learning Python Content Management System (LPCMS) 
+
+### Features
+* Generate content from plain Python code
+* Automatic categorisation of content
+
+
 ## Prequisites
 
 * Python 3.9.16 or later
-* Pip
+* Pip3
 
 ## Quick Start
 
 ```shell
 pip install examon
+examon init
+examon package install
 examon
 ```
 
@@ -16,41 +26,23 @@ examon
 
 #### Set the active repos
 
-Examon will only use questions from repositories you have added which have been marked as active
+Examon will only use questions from repositories you have added and are marked as active
 
 ```shell
 examon repos list
 examon repos add_active <repo name>
 ```
+
 * Use the tag filter
+
 ```shell
-examon run --tag "<tag>"
+examon run --tags "<tag_one>, <tag_two>"
 ```
 
 ## Active Exam Repositories
 
-| Description | Pip Package |
-|-------------|-------------|
-| Beginners   ||
-| PCEP 1      ||
-| PCAP 1      ||
-| PCAP 2      ||
-| PCAP 3      ||
-| PCAP 4      ||
-
 ## Creating your own Exam
-
-### Install from Pypi
-
-### Install from GitHub
 
 ## Security
 
 ## Roadmap
-
-### V1.1
-
-* Filter questions by multiple tags
-* Filter questions by difficulty
-* Filter questions by LOC
-* Add time on question results
