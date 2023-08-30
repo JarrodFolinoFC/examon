@@ -12,7 +12,7 @@ from .drivers.content.sql_db import QuestionQuery
 
 class ExamonWriterFactory:
     @staticmethod
-    def build(files_dir, db_name, models):
+    def build(files_dir, db_name, models) -> Writer:
         if not os.path.isfile(files_dir):
             Path(files_dir).mkdir(parents=True, exist_ok=True)
 

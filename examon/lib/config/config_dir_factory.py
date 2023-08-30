@@ -38,12 +38,12 @@ class ConfigDirFactory:
         return examon_config_dir
 
     @staticmethod
-    def clean(examon_config_dir: ExamonConfigDir):
+    def clean(examon_config_dir: ExamonConfigDir) -> None:
         if os.path.exists(examon_config_dir.examon_dir):
             shutil.rmtree(examon_config_dir.examon_dir, ignore_errors=False, onerror=None)
 
     @staticmethod
-    def build(examon_dir=os.path.expanduser(DEFAULT_FOLDER)) -> ExamonConfigDir:
+    def build(examon_dir: str = os.path.expanduser(DEFAULT_FOLDER)) -> ExamonConfigDir:
         return ExamonConfigDir(examon_dir=os.path.expanduser(examon_dir),
                                settings_file='config.json', sqlite3_db_file='examon.db',
                                files_dir='files', results_dir='results')

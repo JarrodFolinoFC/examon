@@ -52,5 +52,5 @@ class Sqlite3Writer:
 
             session.commit()
 
-    def delete_all(self):
+    def delete_all(self) -> None:
         pass

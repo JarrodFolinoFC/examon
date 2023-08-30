@@ -19,7 +19,7 @@ class ExamonReaderFactory:
     def load(examon_config_dir: ExamonConfigDir,
              content_mode: str = 'sqlite3',
              file_mode: str = 'memory',
-             examon_filter: ItemRegistryFilter = ItemRegistryFilter()):
+             examon_filter: ItemRegistryFilter = ItemRegistryFilter()) -> Reader:
         record_driver = None
         if content_mode == 'sqlite3':
             record_driver = Sqlite3Reader(
@@ -29,5 +29,5 @@ class ExamonReaderFactory:
             record_driver = InMemoryLoader(ExamonItemRegistry.registry())
 
         blob_driver = LocalFileSystemReader()
-        fetch = Reader(record_driver, blob_driver)
-        return fetch.load(examon_filter)
+        reader = Reader(record_driver, blob_driver)
+        return reader.load(examon_filter)

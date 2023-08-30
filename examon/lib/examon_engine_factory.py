@@ -16,7 +16,8 @@ def load_questions_from_db():
 
 class ExamonEngineFactory:
     @staticmethod
-    def build(questions, formatter_class, auto_answer=None, shuffle=False, mode=None):
+    def build(questions, formatter_class,
+              auto_answer=None, shuffle=False, mode=None) -> ExamonEngine:
         def fetch_inputter(enabled, inputter):
             return enabled if enabled else inputter
 
