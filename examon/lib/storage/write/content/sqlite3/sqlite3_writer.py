@@ -1,10 +1,9 @@
-from ..sql_db import Question, Tag, PrintLog, Choice, Metrics
-
 from sqlalchemy.orm import Session
 from examon_core.models.question import MultiChoiceQuestion, BaseQuestion
 import datetime
 
-from ....write.protocols import ContentWriter
+from ....read_write.sql_db import Question, Tag, PrintLog, Choice, Metrics
+from ...protocols import ContentWriter
 
 LANGUAGE = 'python'
 

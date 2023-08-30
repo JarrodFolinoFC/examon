@@ -1,6 +1,6 @@
 from examon_core.examon_item_registry import ItemRegistryFilter
 
-from ....read.protocols import ContentReader
+from ...protocols import ContentReader
 
 
 class InMemoryReader(ContentReader):

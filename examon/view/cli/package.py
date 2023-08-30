@@ -1,7 +1,7 @@
 from examon_core.examon_item_registry import ExamonItemRegistry
 
 from examon.lib.config import JsonConfigStore, ConfigDirFactory, SettingsManagerFactory
-from examon.lib.storage.examon_writer_factory import ExamonWriterFactory
+from examon.lib.storage.write.examon_writer_factory import ExamonWriterFactory
 from examon.lib.pip_installer import PipInstaller
 from .validate_config import ValidateConfig
 

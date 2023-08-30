@@ -48,7 +48,7 @@ jobs:
           poetry install
           poetry build
           python -m pip install --upgrade pip
-          pip install --user dist/examon-0.6.0.tar.gz
+          pip install --user dist/examon-0.6.4.tar.gz
           examon init
           examon package list
           examon package install
@@ -63,7 +63,7 @@ jobs:
           poetry install
           poetry build
           python -m pip install --upgrade pip
-          pip3 install --user dist/examon-0.6.0.tar.gz
+          pip3 install --user dist/examon-0.6.4.tar.gz
           export PATH="$PATH:/Users/runner/Library/Python/3.11/bin"
           examon init
           examon package add --name meow

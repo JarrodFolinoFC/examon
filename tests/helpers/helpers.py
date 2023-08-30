@@ -1,5 +1,5 @@
 import os
-from examon.lib.storage.examon_writer_factory import ExamonWriterFactory
+from examon.lib.storage.write.examon_writer_factory import ExamonWriterFactory
 from examon.lib.config.config_dir_factory import ConfigDirFactory
 from examon_core.examon_item_registry import ExamonItemRegistry
 from sqlalchemy import create_engine
