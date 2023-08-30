@@ -1,8 +1,6 @@
 import pytest
 
-from examon_core.examon_item_registry import ExamonItemRegistry
-
-from examon.lib.storage.drivers.content.sql_db import QuestionQuery
+from examon.lib.storage.read_write.sql_db import QuestionQuery
 
 from helpers import Helpers
 from fixtures_loader import FixturesLoader
