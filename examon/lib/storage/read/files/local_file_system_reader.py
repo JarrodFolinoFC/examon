@@ -1,4 +1,4 @@
-from ...protocols import FileReader
+from ..protocols import FileReader
 
 
 class LocalFileSystemReader(FileReader):

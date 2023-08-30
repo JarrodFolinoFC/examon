@@ -1,6 +1,6 @@
 import os
 
-from ...protocols import FileWriter
+from ..protocols import FileWriter
 
 
 class LocalFileSystemDriver(FileWriter):
