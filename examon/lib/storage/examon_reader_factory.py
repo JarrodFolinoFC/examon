@@ -11,16 +11,18 @@ class ExamonReaderFactory:
     @staticmethod
     def load(examon_config_dir: ExamonConfigDir,
              content_mode: str = 'sqlite3',
-             file_mode: str = 'memory',
              examon_filter: ItemRegistryFilter = ItemRegistryFilter()) -> list:
-        content_reader_driver = None
-        if content_mode == 'sqlite3':
-            content_reader_driver = Sqlite3Reader(
-                db_file=examon_config_dir.sqlite3_full_path()
-            )
-        elif file_mode == 'memory':
-            content_reader_driver = InMemoryReader(ExamonItemRegistry.registry())
+        content_reader_driver = ExamonReaderFactory.get_content_driver(content_mode, examon_config_dir)
 
         file_reader_driver = LocalFileSystemReader()
         reader = Reader(content_reader_driver, file_reader_driver)
         return reader.load(examon_filter)
+
+    @staticmethod
+    def get_content_driver(content_mode, examon_config_dir):
+        if content_mode == 'sqlite3':
+            return Sqlite3Reader(
+                db_file=examon_config_dir.sqlite3_full_path()
+            )
+        elif content_mode == 'memory':
+            return InMemoryReader(ExamonItemRegistry.registry())
