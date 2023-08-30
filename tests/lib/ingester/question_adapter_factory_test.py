@@ -1,11 +1,11 @@
 import pytest
-from helpers import Helpers
-from fixtures_loader import FixturesLoader
 
 from examon_core.examon_item_registry import ExamonItemRegistry
 from examon_core.models.question import BaseQuestion, MultiChoiceQuestion
 from sqlalchemy import select
 from sqlalchemy.orm import Session
+from helpers import Helpers
+from fixtures_loader import FixturesLoader
 
 from examon.lib.storage.read_write.question_adapter_factory import build
 from examon.lib.storage.read_write.sql_db.models import Question
