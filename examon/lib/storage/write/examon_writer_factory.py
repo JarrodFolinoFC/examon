@@ -3,8 +3,8 @@ import os
 import shutil
 from sqlalchemy import create_engine
 
-from .drivers.content.sqlite3.sqlite3_writer import Sqlite3Writer
-from .drivers.files.local_file_system_writer import LocalFileSystemDriver
+from .content.sqlite3.sqlite3_writer import Sqlite3Writer
+from .files.local_file_system_writer import LocalFileSystemDriver
 from .writer import Writer
 from ..read_write.naming_strategies import SimpleFilenameStrategy
 from ..read_write.sql_db import QuestionQuery
