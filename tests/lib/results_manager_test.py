@@ -7,6 +7,7 @@ from examon.lib.reporting.results_manager import ResultsManager
 from examon_core.models.question_response import QuestionResponse
 from examon_core.models.question import BaseQuestion
 from examon_core.models.code_metrics import CodeMetrics
+from helpers import Helpers
 
 
 def build_qr():
@@ -28,6 +29,7 @@ def question():
 
 class TestResultManager:
     def test_creates_valid_json(self):
+        Helpers.setup_directories()
         packages = ['package_a']
         question_responses = [build_qr()]
         examon_filter = None

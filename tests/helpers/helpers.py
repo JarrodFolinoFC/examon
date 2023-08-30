@@ -13,21 +13,7 @@ class Helpers:
 
     @staticmethod
     def setup_everything2(f):
-        # Reset Models
-        ExamonItemRegistry.reset()
-
-        cwd = os.getcwd()
-        dir_factory_build = ConfigDirFactory.build(f'{cwd}/tests/tmp/.examon')
-
-        # clean
-        ConfigDirFactory.clean(dir_factory_build)
-
-
-        import pdb
-        # pdb.set_trace()
-
-        # setup config dirs
-        ConfigDirFactory.init_everything(dir_factory_build)
+        dir_factory_build = Helpers.setup_directories()
 
         # Add to in memory model
         f()
@@ -39,3 +25,15 @@ class Helpers:
                                   ExamonItemRegistry.registry()).run()
 
         return create_engine(f"sqlite+pysqlite:///{db_name}", echo=True)
+
+    @staticmethod
+    def setup_directories():
+        # Reset Models
+        ExamonItemRegistry.reset()
+        cwd = os.getcwd()
+        dir_factory_build = ConfigDirFactory.build(f'{cwd}/tests/tmp/.examon')
+        # clean
+        ConfigDirFactory.clean(dir_factory_build)
+        # setup config dirs
+        ConfigDirFactory.init_everything(dir_factory_build)
+        return dir_factory_build
