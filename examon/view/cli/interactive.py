@@ -25,7 +25,7 @@ class InteractiveCLI:
     @decorator_timer
     def process_command():
         print(ASCII_ART)
-        examon_config_dir = ConfigDirFactory.init_everything()
+        examon_config_dir = ConfigDirFactory.init_everything(ConfigDirFactory.build())
         manager = PipInstaller.install(examon_config_dir)
 
         examon_engine, results_manager = InteractiveCLI.run_quiz(

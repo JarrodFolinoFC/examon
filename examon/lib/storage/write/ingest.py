@@ -1,13 +1,16 @@
+from .protocols import FileWriter
+
+
 class Writer:
-    def __init__(self, record_driver, blob_driver) -> None:
-        self.record_driver = record_driver
-        self.blob_driver = blob_driver
+    def __init__(self, content_reader, file_writer: FileWriter) -> None:
+        self.content_reader = content_reader
+        self.file_writer = file_writer
 
     def run(self) -> None:
         try:
-            self.record_driver.create_all()
-            self.blob_driver.create_files()
+            self.content_reader.create_all()
+            self.file_writer.create_files()
         except Exception:
-            self.record_driver.delete_all()
-            self.blob_driver.delete_files()
+            self.content_reader.delete_all()
+            self.file_writer.delete_files()
             raise

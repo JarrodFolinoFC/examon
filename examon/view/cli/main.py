@@ -26,7 +26,7 @@ def process_command():
     elif cli_args.command == 'run':
         RunnerCli.process_command(cli_args)
     elif cli_args.command == 'init':
-        ConfigDirFactory.init_everything()
+        ConfigDirFactory.init_everything(ConfigDirFactory.build())
     elif cli_args.command == 'ingest':
         RunnerCli.process_command(cli_args)
     elif cli_args.command == 'overview':

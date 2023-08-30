@@ -1,7 +1,9 @@
 import os
 
+from ...write.protocols import FileWriter
 
-class LocalFileSystemDriver:
+
+class LocalFileSystemDriver(FileWriter):
     def __init__(self, filename_strategy=None, models: list = None):
         self.filename_strategy = filename_strategy
         self.models = models
@@ -20,5 +22,4 @@ class LocalFileSystemDriver:
         for model in self.models:
             filename = self.filename_strategy.name(model)
             if os.path.exists(filename):
-                # os.remove(filename)
-                pass
+                os.remove(filename)

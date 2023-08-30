@@ -1,16 +1,9 @@
 from .read.fetch import Reader
 from .drivers.content.sqlite3.sqlite3_reader import Sqlite3Reader
-from .drivers.files.local_filesystem_reader import LocalFileSystemReader
+from .drivers.content.in_memory.in_memory import InMemoryReader
+from .drivers.files import LocalFileSystemReader
 from ..config import ExamonConfigDir
 from examon_core.examon_item_registry import ExamonItemRegistry, ItemRegistryFilter
-
-
-class InMemoryLoader:
-    def __init__(self, models):
-        self.models = models
-
-    def load(self):
-        return self.models
 
 
 class ExamonReaderFactory:
@@ -19,15 +12,15 @@ class ExamonReaderFactory:
     def load(examon_config_dir: ExamonConfigDir,
              content_mode: str = 'sqlite3',
              file_mode: str = 'memory',
-             examon_filter: ItemRegistryFilter = ItemRegistryFilter()):
-        record_driver = None
+             examon_filter: ItemRegistryFilter = ItemRegistryFilter()) -> list:
+        content_reader_driver = None
         if content_mode == 'sqlite3':
-            record_driver = Sqlite3Reader(
+            content_reader_driver = Sqlite3Reader(
                 db_file=examon_config_dir.sqlite3_full_path()
             )
         elif file_mode == 'memory':
-            record_driver = InMemoryLoader(ExamonItemRegistry.registry())
+            content_reader_driver = InMemoryReader(ExamonItemRegistry.registry())
 
-        blob_driver = LocalFileSystemReader()
-        fetch = Reader(record_driver, blob_driver)
-        return fetch.load(examon_filter)
+        file_reader_driver = LocalFileSystemReader()
+        reader = Reader(content_reader_driver, file_reader_driver)
+        return reader.load(examon_filter)

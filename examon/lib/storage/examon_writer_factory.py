@@ -4,17 +4,17 @@ import shutil
 from sqlalchemy import create_engine
 
 from .drivers.content.sqlite3.sqlite3_writer import Sqlite3Writer
-from .drivers.files.local_file_system_writer import LocalFileSystemDriver
+from .drivers.files import LocalFileSystemDriver
 from .write.ingest import Writer
-from .drivers.files.naming_strategies.filename_strategy import SimpleFilenameStrategy
+from .drivers.files.naming_strategies import SimpleFilenameStrategy
 from .drivers.content.sql_db import QuestionQuery
 
 
 class ExamonWriterFactory:
     @staticmethod
-    def build(base_dir, db_name, models):
-        if not os.path.isfile(base_dir):
-            Path(base_dir).mkdir(parents=True, exist_ok=True)
+    def build(files_dir, db_name, models) -> Writer:
+        if not os.path.isfile(files_dir):
+            Path(files_dir).mkdir(parents=True, exist_ok=True)
 
         if not os.path.isfile(db_name):
             root_dir = os.path.abspath(os.curdir)
@@ -25,7 +25,7 @@ class ExamonWriterFactory:
         ids = QuestionQuery(engine).question_unique_ids()
         models = [model for model in models if model.unique_id not in ids]
 
-        filename_strategy = SimpleFilenameStrategy(base_dir)
+        filename_strategy = SimpleFilenameStrategy(files_dir)
         return Writer(
             Sqlite3Writer(
                 engine=engine,

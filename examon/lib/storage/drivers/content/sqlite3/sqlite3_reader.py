@@ -6,11 +6,15 @@ from examon_core.models.question import BaseQuestion
 
 from ..sql_db import Question, Tag, Metrics
 from ....write.question_adapter_factory import build
+from ....read.protocols import ContentReader
 
 
-class Sqlite3Reader:
-    def __init__(self, db_file: str) -> None:
-        self.engine = create_engine(f"sqlite+pysqlite:///{db_file}", echo=True)
+class Sqlite3Reader(ContentReader):
+    def __init__(self, db_file: str = None, engine=None) -> None:
+        if engine is not None:
+            self.engine = engine
+        else:
+            self.engine = create_engine(f"sqlite+pysqlite:///{db_file}", echo=True)
 
     def load(self, examon_filter: ItemRegistryFilter = None) -> list[BaseQuestion]:
         def array_contains_all(array, has_one):
