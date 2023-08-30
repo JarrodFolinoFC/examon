@@ -5,7 +5,7 @@ from examon_core.examon_item_registry import ItemRegistryFilter
 from examon_core.models.question import BaseQuestion
 
 from ....read_write.sql_db import Question, Tag, Metrics
-from ....write.question_adapter_factory import build
+from ....read_write.question_adapter_factory import build
 from ...protocols import ContentReader
 
 
