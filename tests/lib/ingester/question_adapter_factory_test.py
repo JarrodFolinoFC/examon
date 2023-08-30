@@ -1,15 +1,13 @@
-import os
 import pytest
 from examon_core.examon_item_registry import ExamonItemRegistry
 from examon_core.models.question import BaseQuestion, MultiChoiceQuestion
 from examon.lib.storage.write.question_adapter_factory import build
-from examon.lib.storage.examon_writer_factory import ExamonWriterFactory
-from sqlalchemy import create_engine, select
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 from helpers import Helpers
 from fixtures_loader import FixturesLoader
 
-from examon.lib.storage.drivers.content.sql_db import Question
+from examon.lib.storage.read_write.sql_db.models import Question
 
 
 @pytest.fixture(autouse=True)

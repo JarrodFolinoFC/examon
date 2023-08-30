@@ -4,7 +4,7 @@ from simple_term_menu import TerminalMenu
 from examon.lib.pip_installer import PipInstaller
 from examon.lib.config.config_dir_factory import ConfigDirFactory
 from examon.lib.examon_engine_factory import ExamonEngineFactory
-from examon.lib.storage.examon_reader_factory import ExamonReaderFactory
+from examon.lib.storage.read.examon_reader_factory import ExamonReaderFactory
 from examon.lib.reporting.results_manager import ResultsManager
 from examon.view.formatter_options import FormatterOptions
 from ...lib.utils.logging import decorator_timer
