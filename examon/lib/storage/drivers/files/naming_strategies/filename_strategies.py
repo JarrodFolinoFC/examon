@@ -1,4 +1,7 @@
-class SimpleFilenameStrategy:
+from ....write.protocols import FilenameStrategy
+
+
+class SimpleFilenameStrategy(FilenameStrategy):
     def __init__(self, base_path) -> None:
         self.base_path = base_path
 

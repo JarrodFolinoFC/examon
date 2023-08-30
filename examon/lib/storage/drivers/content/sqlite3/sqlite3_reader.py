@@ -6,9 +6,10 @@ from examon_core.models.question import BaseQuestion
 
 from ..sql_db import Question, Tag, Metrics
 from ....write.question_adapter_factory import build
+from ....read.protocols import ContentReader
 
 
-class Sqlite3Reader:
+class Sqlite3Reader(ContentReader):
     def __init__(self, db_file: str = None, engine=None) -> None:
         if engine is not None:
             self.engine = engine
