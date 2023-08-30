@@ -8,7 +8,7 @@ from .validate_config import ValidateConfig
 class OverviewCli:
     @staticmethod
     def process_command():
-        config = ConfigDirFactory.default_config()
+        config = ConfigDirFactory.build()
         ValidateConfig.config_dir_exists(config)
 
         PipInstaller.install(config)
