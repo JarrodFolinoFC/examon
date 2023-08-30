@@ -4,12 +4,14 @@ from sqlalchemy.orm import Session
 from examon_core.models.question import MultiChoiceQuestion, BaseQuestion
 import datetime
 
+from ....write.protocols import ContentWriter
+
 LANGUAGE = 'python'
 
 
-class Sqlite3Writer:
+class Sqlite3Writer(ContentWriter):
     def __init__(self, engine=None, filename_strategy=None,
-                 models: BaseQuestion = None) -> None:
+                 models: list[BaseQuestion] = None) -> None:
         self.engine = engine
         self.models = models
         self.filename_strategy = filename_strategy
@@ -52,5 +54,5 @@ class Sqlite3Writer:
 
             session.commit()
 
-    def delete_all(self):
+    def delete_all(self) -> None:
         pass

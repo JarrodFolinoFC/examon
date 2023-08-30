@@ -11,7 +11,7 @@ class SettingsManager:
         self.packages = []
         self.active_packages = []
 
-    def add(self, package_name: str, url: str=None):
+    def add(self, package_name: str, url: str = None) -> None:
         if package_name is None or package_name == '':
             logging.debug('Cannot add package not specified')
             return
@@ -27,7 +27,7 @@ class SettingsManager:
         if package not in self.active_packages:
             self.active_packages.append(package)
 
-    def remove(self, package: str):
+    def remove(self, package: str) -> None:
         index = next(
             (index for (
                 index,
@@ -43,7 +43,7 @@ class SettingsManager:
         if package in self.active_packages:
             self.active_packages.remove(package)
 
-    def as_dict(self):
+    def as_dict(self) -> dict:
         return {
             'mode': self.mode,
             'packages':

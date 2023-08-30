@@ -4,8 +4,7 @@ from .settings_manager import SettingsManager
 
 class SettingsManagerFactory:
     @staticmethod
-    def build(full_file_path: str):
-
+    def build(full_file_path: str) -> SettingsManager:
         with open(full_file_path, 'r') as f:
             data = json.load(f)
         package_manager = SettingsManager()
